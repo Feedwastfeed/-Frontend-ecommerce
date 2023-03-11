@@ -1,1 +1,27 @@
-<p>product-details works!</p>
+<div class="container-fluid " style="margin: 8px">
+    <div class="row">
+      <div class="col-md-6" *ngIf="product && product.imagePath">
+        <img [src]="product.imagePath" alt="" class="figure-img">
+      </div>
+      <div class="col-md-6" *ngIf="product">
+        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 20px;">
+          Name: {{product.name}}
+        </p>
+        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 20px;">
+          Description: {{product.description}}
+        </p>
+        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
+          Price: ${{product.price}}
+        </p>
+        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
+          Quantity : {{product.stock}} 
+        </p>
+        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
+            Rating : {{product.rate}} 
+          </p>
+        <p class="lead">
+          <button class="btn btn-outline-primary" routerLink="/home">Back to Home page</button>
+        </p>
+      </div>
+    </div>
+  </div>

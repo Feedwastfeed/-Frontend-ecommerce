@@ -21,6 +21,10 @@ export class HomeComponent implements  OnInit {
 
       });
   }
+  viewProductDetails(product:Product):void{
+  
+       this.productservice.viewProductDetails(product);
+  }
     
   
 
