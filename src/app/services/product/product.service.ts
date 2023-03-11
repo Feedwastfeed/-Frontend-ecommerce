@@ -20,8 +20,8 @@ export class ProductService {
   }
 
   getProductById(id:number):Observable<ResponseViewModel> {
-    
-    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/${id}');
+    console.log(id);
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/'+id);
 
  }
 
