@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +17,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { AdminModule } from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -42,6 +42,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     MaterialModule,
     AdminModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
   ],
   providers: [],

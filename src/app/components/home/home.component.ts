@@ -23,9 +23,5 @@ export class HomeComponent implements  OnInit {
   }
     
   
-  //  getAllProdutcs():void{
-   
-  //   }
-
 
 }
