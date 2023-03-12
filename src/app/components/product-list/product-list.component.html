@@ -16,8 +16,8 @@
             <td><input type="number" [(ngModel)]="product.price"></td>
             <td><input type="number" [(ngModel)]="product.stock"></td>
             <td>{{product.rate}}</td>
-            <td><button type="button" class="btn btn-secondary" (click)="updateProduct(product)">Update</button></td>
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
+            <td><button type="button" class="btn btn-secondary btn-sm" (click)="updateProduct(product)">Update</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product)">Delete</button></td>
           </tr>
     </thead>
 </table>

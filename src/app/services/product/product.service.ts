@@ -15,7 +15,7 @@ export class ProductService {
 
   getProductById(id: number): Observable<ResponseViewModel> {
 
-    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/1');
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/' + id);
   }
 
   getAllProducts(): Observable<ResponseViewModel> {
@@ -30,8 +30,12 @@ export class ProductService {
 
   update(product: Product): Observable<ResponseViewModel> {
 
-    console.log(product);
     return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/products', product);
+  }
+
+  delete(id: number): Observable<ResponseViewModel> {
+
+    return this._http.delete<ResponseViewModel>('http://localhost:9090/ecommerce/products/' + id);
   }
 
 }
