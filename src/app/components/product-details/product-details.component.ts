@@ -10,7 +10,6 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ProductDetailsComponent {
 
-
   product: Product;
   constructor(private route: ActivatedRoute, private productservice: ProductService) {
 

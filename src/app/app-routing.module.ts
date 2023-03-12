@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -11,6 +13,7 @@ const routes: Routes = [
   { path: 'products/:productid', component: ProductDetailsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'category/:categoryid', component: CategoryDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
