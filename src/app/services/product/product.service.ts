@@ -11,23 +11,27 @@ import { ResponseViewModel } from 'src/app/models/responseviewmodel';
 export class ProductService {
 
 
-  constructor(private _http:HttpClient , private router: Router) { }
+  constructor(private _http: HttpClient) { }
 
-  getAllProducts():Observable<ResponseViewModel> {
-    
-     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products');
+  getProductById(id: number): Observable<ResponseViewModel> {
 
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/1');
   }
 
-  getProductById(id:number):Observable<ResponseViewModel> {
-    console.log(id);
-    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/'+id);
+  getAllProducts(): Observable<ResponseViewModel> {
 
- }
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products');
+  }
 
- viewProductDetails(product: Product) {
-  this.router.navigate(['/products', product.id], {
-  })
-}
+  add(product: Product): Observable<ResponseViewModel> {
+
+    return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/products', product);
+  }
+
+  update(product: Product): Observable<ResponseViewModel> {
+
+    console.log(product);
+    return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/products', product);
+  }
 
 }

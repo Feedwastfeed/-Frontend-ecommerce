@@ -7,9 +7,8 @@
   
     <a mat-button>E-mart</a>
      <div class="col-md-7 justify-content-start">
-    <a mat-button>Home</a>
+    <a mat-button routerLink="home">Home</a>
     <a mat-button>Contact Us</a>
-    <a mat-button>Products</a>
   </div>
   <div class="col-md-5 justify-content-end">
   <a mat-button>Login</a>
@@ -17,7 +16,8 @@
   <a mat-button [matMenuTriggerFor]="managementmenu" >Management</a>
   <mat-menu #managementmenu="matMenu">
   <a mat-menu-item>Dashboard</a>
-  <a mat-menu-item>Manage Products</a>
+  <a mat-menu-item >Add Products</a>
+  <a mat-menu-item routerLink="products">Manage Products</a>
   </mat-menu>
   <a mat-button [matMenuTriggerFor]="usermenu">User</a>
   

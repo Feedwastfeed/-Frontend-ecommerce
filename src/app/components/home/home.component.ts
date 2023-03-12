@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Orders } from 'src/app/models/orders';
 import { Product } from 'src/app/models/product';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -11,7 +12,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class HomeComponent implements  OnInit {
 
-  constructor(private productservice : ProductService ) { 
+  constructor(private productservice : ProductService, private router: Router ) { 
   }
   products:Product[]=[];
   ngOnInit(): void {
@@ -23,7 +24,8 @@ export class HomeComponent implements  OnInit {
   }
   viewProductDetails(product:Product):void{
   
-       this.productservice.viewProductDetails(product);
+    this.router.navigate(['/products', product.id], {
+    })
   }
     
   
