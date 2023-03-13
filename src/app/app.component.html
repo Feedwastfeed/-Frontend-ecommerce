@@ -23,7 +23,7 @@
       
       <a mat-button>
           <span id="boot-icon" class="bi bi-cart"></span> 
-          <span class="cart_value">3</span>
+          <span class="cart_value" [innerHTML]="countCart()"></span>
       </a>
       <mat-menu #usermenu="matMenu">
         <a mat-menu-item>Profile</a>
