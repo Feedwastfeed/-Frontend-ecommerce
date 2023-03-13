@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ResponseViewModel } from './models/responseviewmodel';
+import { CartService } from './services/cart/cart.service';
 
 
 @Component({
@@ -8,4 +11,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ecommerce';
+
+  constructor(private cartServices: CartService){}
+ 
+
+ countCart():number{
+  console.log(this.cartServices.countProductCart());
+  return this.cartServices.countProductCart();
+ }
+
 }
