@@ -2,7 +2,7 @@
 <div class="container">
 <div [formGroup]="productform" style="margin-top: 30px;">
     <div class="form-group">
-      <label for="Productname">Product name</label>
+      <label for="Productname">Product name</label>y
       <input formControlName="productname" type="text" class="form-control" id="productname" placeholder="product name" [class.is-valid]="!productform.controls['productname'].errors" [class.is-invalid]="productform.controls['productname'].errors" >
       <div class="text-danger" *ngIf="productform.controls['productname'].errors">  
         <small  *ngIf="productform.controls['productname'].hasError('required')" class="form-text text-danger">Required Field</small>
@@ -35,12 +35,13 @@
         <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
             <small  *ngIf="productform.controls['productstock'].hasError('min')" class="form-text text-danger"> Below minimum number</small>
             <small  *ngIf="productform.controls['productstock'].hasError('required')" class="form-text text-danger">Required Field</small>
+            <small  *ngIf="productform.controls['productstock'].hasError('pattern')" class="form-text text-danger">Integer number only</small>
         </div>
     </div>
     <div class="form-outline" style="width: 22rem;">
         <label class="form-label" for="form1">rate</label>
         <i class="fas fa-dollar-sign trailing"></i>
-        <input formControlName="productrate" type="text" id="rate" class="form-control form-icon-trailing" />
+        <input formControlName="productrate" type="text" min="0" max="5" id="rate" class="form-control form-icon-trailing" />
         <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
             <small  *ngIf="productform.controls['productrate'].hasError('min')" class="form-text text-danger"> Below minimum number</small>
             <small  *ngIf="productform.controls['productrate'].hasError('required')" class="form-text text-danger">Required Field</small>
@@ -59,10 +60,10 @@
         </div>
         </div>
       <label class="form-label" for="customFile">Select image</label>
-      <input formControlName="productimage" type="file" class="form-control" id="customFile" /><br>
+      <input formControlName="productimage" type="file" (change)="setEvent($event)"  class="form-control" id="customFile" /><br>
       <div>
-        <small  *ngIf="productform.controls['productimage'].hasError('required')" class="form-text text-danger"> Please select an image</small>
+        <small  *ngIf="productform.controls['productimage'].hasError('required')"  class="form-text text-danger"> Please select an image</small>
        </div>
-      <button type="button" [disabled]="productform.invalid" class="btn btn-primary">Submit</button>
+      <button type="button" [disabled]="productform.invalid" (click)="addImage()"  class="btn btn-primary">Add Product</button>
     </div>
 </div>
