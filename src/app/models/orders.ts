@@ -4,11 +4,11 @@ import { OrderHasProduct } from "./orderhasproduct";
 
 export class Orders {
     id:number;
-    customer:Customer;
-    address:Address;
+    customerOrderDTO:Customer;
+    addressDTO:Address;
     totalPrice:number;
     isSubmitted:boolean;
     paymentType:String;
     submitDate:Date;
-    orderHasProducts:OrderHasProduct[];
+    orderHasProductsDTO:OrderHasProduct[];
 }
