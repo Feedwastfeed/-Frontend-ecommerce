@@ -14,13 +14,13 @@ import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent,},
+  { path: 'category/:categoryid', component: CategoryDetailsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'products/:productid', component: ProductDetailsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'manageproducts', component:ManageProductsComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'category/:categoryid', component: CategoryDetailsComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   

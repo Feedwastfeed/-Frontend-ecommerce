@@ -40,10 +40,10 @@ export class AuthService {
       localStorage.removeItem("roleCustomer");
       this.router.navigate(['/home']);
      };
-     isUser():boolean{
-      if(!(this.isCustomer()&&this.isAdmin())) return true;
-      return false;
-     }
+   //   isUser():boolean{
+   //    if(this.isCustomer()&&this.isAdmin()) return true;
+   //    return false;
+   //   }
      isCustomer():boolean{
       return !!localStorage.getItem("roleCustomer")
      }

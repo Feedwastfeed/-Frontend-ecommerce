@@ -34,9 +34,20 @@ export class LoginComponent implements OnInit{
    console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
-      console.log(this.authCredentialsDto.value);
-      console.log("LOGIN TOKENNNN !!!"+res.token);
-      localStorage.setItem('tokensad',res.token);
+      console.log(res);
+     
+      if (res.object.role == "CUSTOMER") {
+        localStorage.setItem('roleCustomer',"1");
+      }
+      if(res.object.role == "ADMIN"){
+        localStorage.setItem('roleAdmin','2')
+      }
+      localStorage.setItem('ID', res.object.id);
+      alert(res.message)
+      console.log(res)
+      console.log(res.object.token);
+  
+      localStorage.setItem('token',res.object.token);
       this.router.navigate(['/home']);
     })
   }
