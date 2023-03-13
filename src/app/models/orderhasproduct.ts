@@ -3,13 +3,18 @@ import { Orders } from "./orders";
 import { Product } from "./product";
 
 export class OrderHasProduct {
-    id:OrderHasProductId;
-    product:Product;
-    orders:Orders;
-    amount:number;
+    id: OrderHasProductId;
+    product: Product;
+    orders: Orders;
+    amount: number;
 
-    constructor(id: OrderHasProductId, amount:number){
-        this.id = id;
-        this.amount = amount;
+
+    constructor();
+    constructor(id: OrderHasProductId, amount: number);
+    constructor(...args: any) {
+        if (args.length > 0) {
+            this.id = args[0];
+            this.amount = args[1];
+        }
     }
 }
