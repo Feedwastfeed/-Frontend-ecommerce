@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'manageproducts', component:ManageProductsComponent },
   { path: 'orders', component: OrdersComponent },
+  {path: 'profile',component:UserProfileComponent},
   { path: 'category/:categoryid', component: CategoryDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
