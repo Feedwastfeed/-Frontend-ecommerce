@@ -25,6 +25,7 @@ export class CartService {
           if (response.data != null) {
             this.orders = response.data;
             this.count = this.orders.orderHasProductsDTO.length;
+            console.log(response);
           }
         });
     }
@@ -93,7 +94,7 @@ export class CartService {
   addOrder(): Observable<ResponseViewModel> {
     // take customer from toaken
     let customer = new Customer();
-    customer.id = 26;
+    customer.id = 2;
     let order = new Orders(customer, 0, false, new Date());
     return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/order', order);
   }

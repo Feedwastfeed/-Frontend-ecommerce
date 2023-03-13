@@ -20,7 +20,6 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart/cart.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
