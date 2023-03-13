@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from '../app-routing.module';
+
 
 
 
 @NgModule({
-  declarations: [ManageCategoriesComponent,ManageOrdersComponent,ManageUsersComponent],
+  declarations: [ManageOrdersComponent,ManageUsersComponent, ManageProductsComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,HttpClientModule,
+    AppRoutingModule 
   ]
 })
 export class AdminModule { }

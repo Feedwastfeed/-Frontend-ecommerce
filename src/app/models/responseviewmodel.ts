@@ -1,7 +1,9 @@
 export class ResponseViewModel {
 
     data:any;
-    status:String;
+    status:boolean;
     message:String;
+    code:number;
+    
 
 }
