@@ -17,7 +17,7 @@ export class TokenInterceptorService{
 //     const tokenReq = req.clone({
 //       setHeaders:
 //       {
-//         Authorization: `Bearer ${authService.getToken()}`
+//         Authorization: `Bearer ${authService.getToken()}` clasdsads/auth?Authorization= Bearer saxax.asdasd.asdasd
 //       }
 //     })
 //       return next.handle(tokenReq);

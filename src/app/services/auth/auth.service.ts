@@ -36,8 +36,8 @@ export class AuthService {
 
      userLogout(){
       localStorage.removeItem("token");
-      localStorage.removeItem("roleAdmin");
-      localStorage.removeItem("roleCustomer");
+      localStorage.removeItem("role");
+      localStorage.removeItem("ID");
       this.router.navigate(['/home']);
      };
    //   isUser():boolean{
