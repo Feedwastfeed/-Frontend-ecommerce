@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit{
    console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
-      console.log(res);
+      console.log(res.object.username);
+      localStorage.setItem('username',res.object.username);
      
        localStorage.setItem('role',res.object.role);
       localStorage.setItem('ID', res.object.id);
@@ -45,6 +46,12 @@ export class LoginComponent implements OnInit{
   
       localStorage.setItem('token',res.object.token);
       this.router.navigate(['/home']);
+    },error=>{
+      if(error.error.trace.indexOf("Bad credentials")>0){
+        alert("Username or Password is incorrect!")
+      };
+      console.log(error); 
+      this.alertService.error(error);
     })
   }
 }

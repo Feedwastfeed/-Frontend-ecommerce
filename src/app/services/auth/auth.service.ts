@@ -13,11 +13,11 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
   private errorHandler:ErrorHandler=new ErrorHandler();
 
-  _registerUrl= `http://localhost:9090/ecommerce/auth/register`;
-  _loginUrl= `http://localhost:9090/ecommerce/auth/login`;
-  _adminRegisterUrl=`http://localhost:9090/ecommerce/auth/admin/register`;
-  _userUrl = 'http://localhost:9090/ecommerce/customer/'
-  _usersURL='http://localhost:9090/ecommerce/customer/all';
+ private _registerUrl= `http://localhost:9090/ecommerce/auth/register`;
+ private _loginUrl= `http://localhost:9090/ecommerce/auth/login`;
+ private _adminRegisterUrl=`http://localhost:9090/ecommerce/auth/admin/register`;
+ private _userUrl = 'http://localhost:9090/ecommerce/customer/'
+ private _usersURL='http://localhost:9090/ecommerce/customer/all';
   
  
 
@@ -35,6 +35,7 @@ export class AuthService {
      }
 
      userLogout(){
+      localStorage.removeItem('username')
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       localStorage.removeItem("ID");
@@ -50,7 +51,9 @@ export class AuthService {
       }
       return false;
    }
-     
+     getUsername(){
+      return localStorage.getItem('username');
+     }
      isAdmin():boolean{
       if (localStorage.getItem('role')=='ADMIN') {
          return true;

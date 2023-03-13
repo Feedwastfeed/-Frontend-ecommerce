@@ -40,7 +40,7 @@
           </div>
           <div class="d-inline text-left mb-3">
             <div class="form-group mx-auto" style="padding-left: 43%;">
-              <button style="width: 30%;" class="btn mx-auto btn-default btn-primary" type="submit">Register</button>
+              <button style="width: 30%;" class="btn mx-auto btn-default btn-primary" [disabled]="!authRegistrationDto.valid" type="submit">Register</button>
             </div>
             </div>
           </form>

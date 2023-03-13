@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'ecommerce';
 
-  constructor(private cartServices: CartService,private authService:AuthService,private router:Router){}
+  constructor(private cartServices: CartService,public authService:AuthService,private router:Router){}
  
 
  countCart():number{
