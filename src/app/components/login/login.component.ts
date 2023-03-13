@@ -13,6 +13,7 @@ import { TokenInterceptorService } from 'src/app/services/auth/token-interceptor
 })
 export class LoginComponent implements OnInit{
   authCredentialsDto: FormGroup;
+  showPass = true;
   
   constructor(
     private authService:AuthService,
@@ -36,12 +37,7 @@ export class LoginComponent implements OnInit{
     .subscribe((res:any)=>{
       console.log(res);
      
-      if (res.object.role == "CUSTOMER") {
-        localStorage.setItem('roleCustomer',"1");
-      }
-      if(res.object.role == "ADMIN"){
-        localStorage.setItem('roleAdmin','2')
-      }
+       localStorage.setItem('role',res.object.role);
       localStorage.setItem('ID', res.object.id);
       alert(res.message)
       console.log(res)

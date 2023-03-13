@@ -45,11 +45,20 @@ export class AuthService {
    //    return false;
    //   }
      isCustomer():boolean{
-      return !!localStorage.getItem("roleCustomer")
-     }
+      if (localStorage.getItem('role')=='CUSTOMER') {
+         return true;
+      }
+      return false;
+   }
      
      isAdmin():boolean{
-      return !!localStorage.getItem("roleAdmin")
+      if (localStorage.getItem('role')=='ADMIN') {
+         return true;
+      }
+      return false;
+     }
+     getCurrentUserId(){
+      return localStorage.getItem('ID');
      }
      getCurrentUser(id:number){
         return this.http.get<any>(this._userUrl+id);      

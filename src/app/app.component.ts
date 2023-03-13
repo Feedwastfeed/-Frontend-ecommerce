@@ -23,7 +23,7 @@ export class AppComponent {
  }
 
  logout(){
-  console.log(this.authService.isLoggedIn());
+  console.log(this.authService.isLoggedIn(),this.authService.isCustomer(),this.authService.isAdmin(),this.authService.getCurrentUserId());
   this.authService.userLogout();
   console.log(this.authService.isLoggedIn());
   this.router.navigate(['/home'])

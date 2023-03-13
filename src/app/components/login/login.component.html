@@ -14,12 +14,15 @@
           </div>
           <div class="d-inline text-center mb-3">
             <div class="form-group mx-auto">
-              <input class="text-center form-control inpSp" type="password" formControlName="password" placeholder="Password">
+              <input class="text-center form-control inpSp" [type]="showPass?'password':'text'" formControlName="password" placeholder="Password">
+              <button mat-icon-button matSuffix (click)="showPass = !showPass" [attr.aria-label]="'Hide Password'" type="button">
+                <mat-icon>{{showPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </div>
           </div>
           <div class="d-inline text-left mb-3">
             <div class="form-group mx-auto" style="padding-left: 40%;">
-              <button class="btn mx-auto btn-default btn-primary" type="submit">Login</button>
+              <button class="btn mx-auto btn-default btn-primary" type="submit" [disabled]="!authCredentialsDto.valid">Login</button>
               <a class="text-black text-center center font-weight-bold regStr" routerLink="/register" style="margin-left: 1%;">Register new account</a>
 
             </div>
