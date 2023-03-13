@@ -14,7 +14,7 @@ export class AuthService {
   private errorHandler:ErrorHandler=new ErrorHandler();
 
   _registerUrl= `http://localhost:9090/ecommerce/auth/register`;
-  _loginUrl= `http://localhost:9090/ecommerce/auth/authenticate`;
+  _loginUrl= `http://localhost:9090/ecommerce/auth/login`;
   _adminRegisterUrl=`http://localhost:9090/ecommerce/auth/admin/register`;
   _userUrl = 'http://localhost:9090/ecommerce/customer/'
   _usersURL='http://localhost:9090/ecommerce/customer/all';
