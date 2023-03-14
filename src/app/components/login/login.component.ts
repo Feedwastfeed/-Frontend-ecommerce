@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit{
     
     ){}
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home'])
+    }
   
     
     this.authCredentialsDto= this.formBuilder.group({

@@ -13,8 +13,13 @@ import { UserAuthGuard } from './guards/user-auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
+  {
+    path: 'contact' , 
+    component:ContactComponent
+  },
   { 
     path: 'home',
     component: HomeComponent
