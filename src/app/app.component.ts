@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResponseViewModel } from './models/responseviewmodel';
 import { CartService } from './services/cart/cart.service';
 import { AuthService } from './services/auth/auth.service';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   cart = 'bi bi-cart-check';
   title = 'ecommerce';
@@ -20,6 +20,10 @@ export class AppComponent {
   constructor(private cartServices: CartService,public authService:AuthService,private router:Router){
     this.walletValue();
   }
+  ngOnInit(): void {
+    this.authService.saveData();
+  }
+ 
  
 
  countCart():number{
@@ -38,7 +42,6 @@ export class AppComponent {
   this.router.navigate(['/login'])
  }
  walletValue(){
-  console.log(this.authService.getCustomerData())
   return "$"+this.authService.getCustomerData().walletLimit;
  }
 }

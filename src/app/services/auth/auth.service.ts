@@ -35,7 +35,8 @@ export class AuthService {
     }
      login(data:any): Observable<any>{
       try {
-         return this.http.post<any>(this._loginUrl,data) 
+         return this.http.post<any>(this._loginUrl,data);
+         
       } catch (error) {
          console.log('aS23');
          this.errorHandler.handleError(error);
@@ -58,6 +59,12 @@ export class AuthService {
      userLogout(){
       this.currentUserAdmin=new Admin();
       this.currentUserCustomer=new Customer();
+      localStorage.removeItem("id");
+      localStorage.removeItem("email");
+      localStorage.removeItem("phone");
+      localStorage.removeItem("username");
+      localStorage.removeItem('walletLimit')
+      localStorage.removeItem('dob')
       localStorage.removeItem("role");
       localStorage.removeItem("token");
       this.router.navigate(['/home']);
@@ -110,5 +117,22 @@ export class AuthService {
          return null;
       }
      }
+     saveData(){
+      if (localStorage.getItem('role')=="ADMIN") {
+         this.currentUserAdmin.id= +localStorage.getItem('id');
+         this.currentUserAdmin.email= localStorage.getItem('email');
+         this.currentUserAdmin.phone=localStorage.getItem('phone');
+         this.currentUserAdmin.username=localStorage.getItem('username');
+      } else if (localStorage.getItem('role')=="CUSTOMER") {
+      
+         this.currentUserCustomer.id = +localStorage.getItem('id') ;
+      this.currentUserCustomer.email= localStorage.getItem('email');
+      this.currentUserCustomer.phone=localStorage.getItem('phone');
+      this.currentUserCustomer.username=localStorage.getItem('username');
+      this.currentUserCustomer.walletLimit=+localStorage.getItem('walletLimit');
+      this.currentUserCustomer.dob = new Date(localStorage.getItem('dob'));
+     
+      } 
+      }
 
   }

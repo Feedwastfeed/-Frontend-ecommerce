@@ -41,8 +41,9 @@ export class RegisterComponent {
     this.authService.register(this.authRegistrationDto.getRawValue())
     .subscribe((res:any)=>{
       console.log(res);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     },error =>{
+      alert("Username Already Taken");
       console.log(error);
     })
   }
