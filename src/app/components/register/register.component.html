@@ -9,26 +9,34 @@
         <form [formGroup]="authRegistrationDto" (submit)="submit()">
         <div class="d-inline text-center mb-0">
           <div class="form-group mx-auto">
-            <b style="margin-left: -3%;">Username </b><input class="text-center form-control inpSp" formControlName="userName" type="text" placeholder="Username">
+            <b style="margin-left: -3%;">Username </b><input class="text-center form-control inpSp" formControlName="userName" type="text" placeholder="Username"
+            [class.is-valid]="!authRegistrationDto.controls['userName'].errors"
+            [class.is-invalid]="authRegistrationDto.controls['userName'].errors">
           </div>
         </div><div class="d-inline text-center mb-0">
           <div class="form-group mx-auto">
-            <b style="margin-left: -1%;">E-mail </b><input class="text-center form-control inpSp" formControlName="email" type="email" placeholder="E-Mail">
+            <b style="margin-left: -1%;">E-mail </b><input class="text-center form-control inpSp" formControlName="email" type="email" placeholder="E-Mail"
+            [class.is-valid]="!authRegistrationDto.controls['email'].errors"
+            [class.is-invalid]="authRegistrationDto.controls['email'].errors">
           </div>
         </div>
         <div class="d-inline text-center mb-0">
           <div class="form-group mx-auto">
-            <b style="margin-left: -3%;">Password </b><input class="text-center form-control inpSp" formControlName="password" type="password" placeholder="Password">
+            <b style="margin-left: -3%;">Password </b><input class="text-center form-control inpSp" formControlName="password" type="password" placeholder="Password"
+            [class.is-valid]="!authRegistrationDto.controls['password'].errors"
+            [class.is-invalid]="authRegistrationDto.controls['password'].errors">
           </div>
         </div>
-        <div class="d-inline text-center mb-0">
+        <!-- <div class="d-inline text-center mb-0">
           <div class="form-group mx-auto">
             <b style="margin-left: -8%;">Confirm Password </b> <input class="text-center form-control inpSp" type="password" placeholder="Confirm Password">
           </div>
-        </div>
+        </div> -->
         <div class="d-inline text-center mb-3">
           <div class="form-group mx-auto">
-            <b style="margin-left: -1%;">Phone </b><input class="text-center form-control inpSp" formControlName="phone" type="tel" placeholder="Phone">
+            <b style="margin-left: -1%;">Phone </b><input class="text-center form-control inpSp" formControlName="phone" type="tel" placeholder="Phone" maxlength="11"
+            [class.is-valid]="!authRegistrationDto.controls['phone'].errors"
+            [class.is-invalid]="authRegistrationDto.controls['phone'].errors">
           </div>
         </div>
         <div class="d-inline text-center mb-3">
