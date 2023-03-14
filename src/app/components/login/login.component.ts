@@ -36,15 +36,24 @@ export class LoginComponent implements OnInit{
    console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
-      console.log(res.object.username);
-      localStorage.setItem('username',res.object.username);
-     
-       localStorage.setItem('role',res.object.role);
-      localStorage.setItem('ID', res.object.id);
+      localStorage.setItem('role',res.object.role);
+      if(res.object.role=="CUSTOMER"){
+      console.log("currentUserCustomer Created")
+      this.authService.currentUserCustomer.id = res.object.id;
+      this.authService.currentUserCustomer.email= res.object.email;
+      this.authService.currentUserCustomer.phone=res.object.phone;
+      this.authService.currentUserCustomer.username=res.object.username;
+      this.authService.currentUserCustomer.walletLimit=res.object.walletLimit;
+      this.authService.currentUserCustomer.dob = res.object.dob;
+    } else if(res.object.role=="ADMIN"){
+      console.log("currentUserAdmin Created")
+      this.authService.currentUserAdmin.email=res.object.email;
+      this.authService.currentUserAdmin.id=res.object.id;
+      this.authService.currentUserAdmin.phone=res.object.phone;
+      this.authService.currentUserAdmin.username=res.object.username;
+
+    } 
       alert(res.message)
-      console.log(res)
-      console.log(res.object.token);
-  
       localStorage.setItem('token',res.object.token);
       this.router.navigate(['/home']);
     },error=>{
@@ -52,7 +61,7 @@ export class LoginComponent implements OnInit{
       if(error.status == 403){
         alert("Username or Password is incorrect!")
       };
-      this.alertService.error(error);
+      console.log(this.alertService.error(error));
     })
   }
 }

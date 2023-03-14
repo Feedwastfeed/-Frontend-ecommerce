@@ -16,6 +16,7 @@ export class TokenInterceptorService{
     const authService = this.injector.get(AuthService);
     
     if(authService.isLoggedIn()==true){
+      console.log("Interceptor Token");
      tokenReq = req.clone({
       setHeaders:
       {

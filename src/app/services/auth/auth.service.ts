@@ -5,10 +5,14 @@ import { ErrorHandler } from 'src/app/shared/error-handler';
 import { Observable } from 'rxjs';
 import { ResponseViewModel } from 'src/app/models/responseviewmodel';
 import { Customer } from 'src/app/models/customer';
+import { User } from 'src/app/models/user';
+import { Admin } from 'src/app/models/admin';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+   currentUserCustomer = new Customer();
+   currentUserAdmin = new Admin();
 
   constructor(private http: HttpClient,private router: Router) { }
   private errorHandler:ErrorHandler=new ErrorHandler();
@@ -22,23 +26,40 @@ export class AuthService {
 
 
     register(data:any): Observable<any>{
-    return this.http.post<any>(this._registerUrl,data);
+      try {
+       return this.http.post<any>(this._registerUrl,data);   
+      } catch (error) {
+         console.log(this.errorHandler.handleError(error));
+         return null;
+      }
     }
      login(data:any): Observable<any>{
-        return this.http.post<any>(this._loginUrl,data) 
+      try {
+         return this.http.post<any>(this._loginUrl,data) 
+      } catch (error) {
+         console.log('aS23');
+         this.errorHandler.handleError(error);
+         return null;
+      }
      }
      adminRegister(data:any): Observable<any>{
 
-        console.log(data);
-        return this.http.post<any>(this._adminRegisterUrl,data);
+        try {
+         return this.http.post<any>(this._adminRegisterUrl,data);
+
+        } catch (error) {
+         console.log('aS30');
+         this.errorHandler.handleError(error);
+         return null;
+        }
      
      }
 
      userLogout(){
-      localStorage.removeItem('username')
-      localStorage.removeItem("token");
+      this.currentUserAdmin=null;
+      this.currentUserCustomer=null;
       localStorage.removeItem("role");
-      localStorage.removeItem("ID");
+      localStorage.removeItem("token");
       this.router.navigate(['/home']);
      };
    //   isUser():boolean{
@@ -52,7 +73,7 @@ export class AuthService {
       return false;
    }
      getUsername(){
-      return localStorage.getItem('username');
+      return this.getCurrentUser().username;
      }
      isAdmin():boolean{
       if (localStorage.getItem('role')=='ADMIN') {
@@ -61,19 +82,31 @@ export class AuthService {
       return false;
      }
      getCurrentUserId(){
-      return localStorage.getItem('ID');
+      return this.getCurrentUser().id
      }
-     getCurrentUser(id:number){
-        return this.http.get<any>(this._userUrl+id);      
+     getCurrentUser(){
+      if (localStorage.getItem('role')=="CUSTOMER") {
+         return this.currentUserCustomer;
+      }else if(localStorage.getItem('role')=="ADMIN"){
+         return this.currentUserAdmin;
+      }else{
+         return null;
+      }
      }
      getToken(){
-      console.log("User Token"+localStorage.getItem("token"))
       return localStorage.getItem("token");
      }
      isLoggedIn(): boolean{
       return !!localStorage.getItem("token");
      }
      getSystemCustomers(): Observable<Customer[]>{
-        return this.http.get<any>(this._usersURL);
+      try {
+         return this.http.get<any>(this._usersURL);
+      } catch (error) {
+         console.log("aS31");
+         this.errorHandler.handleError(error);
+         return null;
+      }
      }
+
   }
