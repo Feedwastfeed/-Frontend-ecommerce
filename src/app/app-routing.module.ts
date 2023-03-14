@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent,},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'manageproducts', component: ManageProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrdersComponent },
+  {path: 'contact' , component:ContactComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   
