@@ -12,19 +12,57 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent,},
-  { path: 'category/:categoryid', component: CategoryDetailsComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'products/:productid', component: ProductDetailsComponent },
-  { path: 'products', component: ProductListComponent },
-  { path: 'manageproducts', component: ManageProductsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  { 
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'category/:categoryid', 
+    component: CategoryDetailsComponent
+  },
+  { 
+    path: 'login', 
+    component: LoginComponent
+  },
+  { 
+    path: 'register', 
+    component: RegisterComponent
+  },
+  { 
+    path: 'products/:productid', 
+    component: ProductDetailsComponent 
+  },
+  { 
+    path: 'products', 
+    component: ProductListComponent 
+  },
+  { 
+    path: 'manageproducts', 
+    component: ManageProductsComponent,
+    canActivate:[AdminAuthGuard]
+  },
+  { 
+    path: 'cart', 
+    component: CartComponent,
+    canActivate:[UserAuthGuard]
+  },
+  { 
+    path: 'orders', 
+    component: OrdersComponent,
+    canActivate:[UserAuthGuard] 
+  },
+  { 
+    path: '', 
+    redirectTo: 'home', 
+    pathMatch: 'full' 
+  },
+  { 
+    path: '**', 
+    component: PageNotFoundComponent 
+  },
   
 
 
