@@ -20,7 +20,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
-
+import { CartComponent } from './components/cart/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { TokenInterceptorService } from './services/auth/token-interceptor.servi
     ProductListComponent,
     ProductDetailsComponent,
     ProductFilterPipe,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

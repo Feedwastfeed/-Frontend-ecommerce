@@ -17,10 +17,8 @@
     align-items: center;
     justify-content: center;
     width: 250px;
-    background: #2b5876;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+    background: #747474;  /* fallback for old browsers */
+   
   }
   
   .example-header {
@@ -35,16 +33,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #5433FF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #A5FECB, #20BDFF, #5433FF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #A5FECB, #20BDFF, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #d0d0d0;  /* fallback for old browsers */
   
   }
 
 .cart_value{
   font-size:12px;
   color: #fff;
-  background: red;
+  background: rgb(118, 117, 117);
   border-radius:50%;
   padding: 0 5px;
   position:relative;

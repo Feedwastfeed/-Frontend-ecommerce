@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit{
     
     ){}
   ngOnInit(): void {
+  
     
     this.authCredentialsDto= this.formBuilder.group({
       userName: new FormControl(null,Validators.required),
@@ -47,10 +48,10 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('token',res.object.token);
       this.router.navigate(['/home']);
     },error=>{
-      if(error.error.trace.indexOf("Bad credentials")>0){
+      console.log(error)
+      if(error.status == 403){
         alert("Username or Password is incorrect!")
       };
-      console.log(error); 
       this.alertService.error(error);
     })
   }

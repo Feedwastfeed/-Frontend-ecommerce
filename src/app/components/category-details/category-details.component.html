@@ -1,29 +1,30 @@
 <div class="container m-2 p-2">
     <div class="row justify-content-center mb-2">
-      <h1 style="font-family: 'Anton', sans-serif" class="text-center" style="font-size:50px">
-         {{category.name}}
-      </h1>
+      <h2 style="font-family: 'Anton', sans-serif; text-transform: uppercase;" class="text-center">
+        {{category.name}}
+      </h2>
     </div>
-    <mat-divider class="m-2"></mat-divider>
+    <mat-divider class="m-2" style="width: 100%; border: 1px solid black;"></mat-divider>
   
   <div class="row mt-md-5" >
-      <div class="col-md-3" *ngFor="let product of category.products">
-        <div class="col-sm-6">
-          <img [src]="product.imagePath" *ngIf="product.imagePath" alt="" width="300px" height="400px">
-          <div class="card-body">
-            <h1 class="card-title">{{product.name}}</h1>
-            <mat-divider class="m-2"></mat-divider>
-            <p class="card-text lead">${{product.price}}</p>
-          </div>
-          <div class="card-footer">
-            <div class="row justify-content-center">
-              <button (click)="viewProductDetails(product)" class="btn btn-outline-info" >
-                View details
-              </button>
-              <button class="btn btn-outline-info">Add to cart</button >
+      <div class="col-md-3" *ngFor="let product of category.products" style="width: 50%;">
+          <div class="col-xxl-auto container">
+            <div class="wrapper">
+              <div class="banner-image">
+            <img [src]="product.imagePath" *ngIf="product.imagePath" alt="" width="100%" height="300px">
+              </div>
+              <h1 class="card-title">{{product.name}}</h1>
+              <p class="card-text">${{product.price}}</p>
             </div>
+            <div class="button-wrapper"> 
+              <button class="btn outline"(click)="viewProductDetails(product)" style="margin-bottom: 3%;">DETAILS</button>
+                <button class="btn fill" (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()">Add To Cart</button>
+              </div>
+                </div>
           </div>
+          
+           
+          
         </div>
-      </div>
-    </div>
-  </div>
+    
+    

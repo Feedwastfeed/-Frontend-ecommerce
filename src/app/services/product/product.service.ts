@@ -23,9 +23,11 @@ export class ProductService {
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products');
   }
 
-  add(product: Product): Observable<ResponseViewModel> {
+  add(product: Product): void {
 
-    return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/products', product);
+   this._http.post('http://localhost:9090/ecommerce/products', product).subscribe(res=>{
+
+   });
   }
 
   update(product: Product): Observable<ResponseViewModel> {
@@ -36,6 +38,13 @@ export class ProductService {
   delete(id: number): Observable<ResponseViewModel> {
 
     return this._http.delete<ResponseViewModel>('http://localhost:9090/ecommerce/products/' + id);
+  }
+  uploadImage(formdata : FormData):void {
+
+    this._http.post('http://localhost:9090/ecommerce/products/upload',formdata).subscribe(res=>
+    {
+     
+    })
   }
 
 }

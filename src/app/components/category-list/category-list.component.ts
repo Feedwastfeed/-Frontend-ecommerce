@@ -19,8 +19,8 @@ ngOnInit(): void {
   this.categoryservice.getAllCategories().subscribe(
     response=>{
        this.categories=response.data;
-    });
-}
+    })
+};
 
 viewCategoryDetails(category:Category):void{
 

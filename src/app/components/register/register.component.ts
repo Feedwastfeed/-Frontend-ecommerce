@@ -24,22 +24,26 @@ export class RegisterComponent {
   
     
     this.authRegistrationDto= this.formBuilder.group({
-      userName: new FormControl(null,Validators.required),
-      password: new FormControl(null,Validators.required),
-      email: new FormControl(null,Validators.email),
-      phone: new FormControl(null,Validators.required),
+      userName: new FormControl(null,[Validators.required,Validators.minLength(5)]),
+      password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
+      email: new FormControl(null,[Validators.required,Validators.email]),
+      phone: new FormControl(null,[Validators.required,Validators.pattern(/^01[0125][0-9]{8}$/)]),
       isMale: new FormControl(null,Validators.required)
     });
   }
- 
+  getUsername(){
+    return  this.authRegistrationDto.get
+  }
   submit(){
     
 
     console.log(this.authRegistrationDto.value);
-    // this.authService.register(this.authRegistrationDto.getRawValue())
-    // .subscribe((res:any)=>{
-    //   console.log(res);
-    //   this.router.navigate(['/home']);
-    // })
+    this.authService.register(this.authRegistrationDto.getRawValue())
+    .subscribe((res:any)=>{
+      console.log(res);
+      this.router.navigate(['/home']);
+    },error =>{
+      console.log(error);
+    })
   }
 }

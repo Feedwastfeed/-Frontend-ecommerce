@@ -19,7 +19,7 @@ export class AuthService {
  private _userUrl = 'http://localhost:9090/ecommerce/customer/'
  private _usersURL='http://localhost:9090/ecommerce/customer/all';
   
- 
+
 
     register(data:any): Observable<any>{
     return this.http.post<any>(this._registerUrl,data);

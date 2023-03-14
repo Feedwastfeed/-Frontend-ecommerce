@@ -7,6 +7,7 @@ import { OrderHasProductId } from 'src/app/models/orderhasproductid';
 import { Orders } from 'src/app/models/orders';
 import { Product } from 'src/app/models/product';
 import { ResponseViewModel } from 'src/app/models/responseviewmodel';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,50 +19,68 @@ export class CartService {
   public scoreSubject = new Subject<number>();
 
 
-  constructor(private _http: HttpClient) {
-    // check user logged in here
-    if (1 > 0) {
-      // 26 is customer id where take it from token
-      this.getcart(29).subscribe(
+  constructor(private _http: HttpClient,private authService:AuthService) {
+    if (authService.isLoggedIn()) { // check user logged in here
+      this.getcart(+authService.getCurrentUserId()).subscribe(  // 26 is customer id where take it from token
         response => {
           if (response.data != null) {
             this.orders = response.data;
             this.count = this.orders.orderHasProductsDTO.length;
+            console.log(response);
           }
         });
     }
   }
 
+  getOrders(): Orders {
+    return this.orders;
+  }
   countProductCart(): number {
     this.scoreSubject.next(this.count);
     return this.count;
   }
 
   addProductToCart(product: Product) {
-    if (this.orders.id == null) {
-      // if there is no cart or this first order
-      this.addOrder().subscribe(
-        response => {
-          this.orders = response.data;
-          let id = response.data.id
-          this.addProductToCustomerOrder(product, id);
-        });
-      this.count++;
+    if (this.authService.isLoggedIn) { // check user logged in here
+      if (this.orders.id == null) {  // if there is no cart or this first order
+        this.addFirstProductToCart(product);
+      } else {   // check this product not add to cart
+        this.chexckBeforeAddToCart(product);
+      }
     } else {
-      // check this product not add to cart
-      this.chickProductAddedToCart(product, this.orders.id).subscribe(
-        response => {
-          // if this product not add to cart
-          console.log(response.data + " " + product.id + " " + this.orders.id);
-          if (response.data == 0) {
-            this.addProductToCustomerOrder(product, this.orders.id);
-            console.log(this.count + " 5412");
-            this.count++;
-          }
-        });
+
     }
   }
 
+  chexckBeforeAddToCart(product: Product) {
+    this.chickProductAddedToCart(product, this.orders.id).subscribe(
+      response => {
+        // if this product not add to cart
+        if (response.data == 0) {
+          this.addProductToCustomerOrder(product, this.orders.id);
+          this.addproductToOrderList(product);
+          this.count++;
+        }
+      });
+  }
+
+  addFirstProductToCart(product: Product) {
+    this.addOrder().subscribe(
+      response => {
+        this.orders = response.data;
+        let id = response.data.id
+        this.addProductToCustomerOrder(product, id);
+        this.addproductToOrderList(product);
+        this.count++;
+      });
+  }
+
+  addproductToOrderList(product: Product) {
+    let orderHasProduct = new OrderHasProduct();
+    orderHasProduct.product = product;
+    orderHasProduct.amount = 1;
+    this.orders.orderHasProductsDTO.push(orderHasProduct);
+  }
 
   chickProductAddedToCart(product: Product, orderId: number): Observable<ResponseViewModel> {
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/productOrder/' + product.id + '/' + orderId);
@@ -76,8 +95,11 @@ export class CartService {
   addOrder(): Observable<ResponseViewModel> {
     // take customer from toaken
     let customer = new Customer();
-    customer.id = 26;
-    let order = new Orders(customer, 0, false, new Date());
+     customer.id = +this.authService.getCurrentUserId();
+    var order;
+    console.log("A7aaaaaaaaaaaaaaaaaaaaaaaa")
+    order = new Orders(customer, 0, false, new Date());
+    console.log(order);
     return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/order', order);
   }
 

@@ -1,36 +1,37 @@
-<mat-toolbar color="primary" class="example-header">
+<div class="WholePage">
+<mat-toolbar style="background-color: black;" class="example-header text-bg-dark text-white">
   <mat-toolbar-row>
 
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <a mat-button>E-mart</a>
+    <i style="font-size: 23px;">E-mart</i>
     <div class="col-md-7 justify-content-start">
-      <a mat-button routerLink="home">Home</a>
+      <a mat-button routerLink="home" style="text-decoration: none;">Home</a>
       <a mat-button>Contact Us</a>
     </div>
     <div class="col-md-5 justify-content-end">
-      <a mat-button routerLink="login" *ngIf="!(authService.isLoggedIn())">Login</a>
-      <a mat-button routerLink="register" *ngIf="!(authService.isLoggedIn())">Register</a>
-      <a mat-button *ngIf="authService.isLoggedIn() && authService.isAdmin()" [matMenuTriggerFor]="managementmenu">Management</a>
+      <a mat-button routerLink="login" *ngIf="!(authService.isLoggedIn())" style="text-decoration: none;">Login</a>
+      <a mat-button routerLink="register" *ngIf="!(authService.isLoggedIn())" style="text-decoration: none;">Register</a>
+      <a mat-button *ngIf="authService.isLoggedIn() && authService.isAdmin()" [matMenuTriggerFor]="managementmenu" style="text-decoration: none;">Management</a>
       <mat-menu #managementmenu="matMenu">
-        <a mat-menu-item>Dashboard</a>
-        <a mat-menu-item>Add Products</a>
+        <a mat-menu-item routerLink="/orders">Dashboard</a>
+        <a mat-menu-item routerLink="manageproducts">Add Products</a>
         <a mat-menu-item>Add Admin</a>
         <a mat-menu-item routerLink="products">Manage Products</a>
-        <a mat-menu-item (click)="logout()">Logout</a>
+        <a mat-menu-item (click)="logout()"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
       </mat-menu>
       <a mat-button [matMenuTriggerFor]="usermenu" *ngIf="authService.isLoggedIn() && authService.isCustomer()" [innerHTML]="'Welcome, '+authService.getUsername()"></a>
       
-      <a mat-button *ngIf="!(authService.isLoggedIn()) || authService.isCustomer()">
-          <span id="boot-icon" class="bi bi-cart"></span> 
-          <span class="cart_value" [innerHTML]="countCart()"></span>
+      <a mat-button *ngIf="authService.isLoggedIn() && authService.isCustomer()" routerLink="cart" style="text-decoration: none;">
+          <span id="boot-icon" [class]="cart"></span>
+          <span class="cart_value" [innerHTML]="countCart()" ></span>
       </a>
       <mat-menu #usermenu="matMenu">
         <a mat-menu-item>Profile</a>
         <a mat-menu-item>Orders</a>
-        <a mat-menu-item (click)="logout()">Logout</a>
+        <a mat-menu-item (click)="logout()"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
       </mat-menu>
     </div>
   </mat-toolbar-row>
@@ -47,3 +48,4 @@
   </mat-sidenav-container>
   <mat-toolbar class="example-footer">E-mart</mat-toolbar>
 </ng-container>
+</div>

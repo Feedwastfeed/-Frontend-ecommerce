@@ -1,7 +1,10 @@
 import { Category } from "./category";
 import { OrderHasProduct } from "./orderhasproduct";
 
+
 export class Product {
+
+constructor(){}
     id:number;
     name:String;
     description:String;
@@ -9,6 +12,6 @@ export class Product {
     stock:number;
     imagePath:String;
     rate:number;
-    categories:Category[];
-    orderHasProducts:OrderHasProduct[];
+    categories:Category[]=[];
+    orderHasProducts:OrderHasProduct[]=[];
 }

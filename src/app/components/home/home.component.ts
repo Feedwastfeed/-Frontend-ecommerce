@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { Orders } from 'src/app/models/orders';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -18,7 +19,7 @@ export class HomeComponent implements  OnInit {
   products:Product[]=[];
   categories:Category[];
 
-  constructor(private productservice : ProductService, private categoryservice:CategoryService ,private router: Router , private cartService: CartService) {}
+  constructor(private productservice : ProductService, private categoryservice:CategoryService ,private router: Router , private cartService: CartService,public authService:AuthService) {}
 
   ngOnInit(): void {
     this.productservice.getAllProducts().subscribe(

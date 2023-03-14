@@ -1,23 +1,23 @@
-<div class="container-fluid " style="margin: 225px">
+<div class="container-fluid text-bg-dark" style="margin: 225px; height: 100%;">
     <div class="row">
-      <div class="col-md-6" *ngIf="product && product.imagePath">
-        <img [src]="product.imagePath" alt="" class="figure-img" width="550px">
+      <div class="col-md-6" *ngIf="product && product.imagePath" >
+        <img [src]="product.imagePath" alt="" class="figure-img" width="200px">
       </div>
-      <div class="col-md-6" *ngIf="product">
-        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 20px;">
+      <div class="col-md-6" *ngIf="product" style="margin: -15% 0% 0% 10%;">
+        <p class="lead" style="font-size: 20px;">
           Name: {{product.name}}
         </p>
-        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 20px;">
+        <p class="lead" style="font-size: 20px;">
           Description: {{product.description}}
         </p>
-        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
-          Price: ${{product.price}}
+        <p class="lead" style="font-size: 18px;">
+          Price: <i class="bi bi-cash-coin" style="color: green;"></i>${{product.price}}
         </p>
-        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
+        <p class="lead" style="font-size: 18px;">
           Quantity : {{product.stock}} 
         </p>
-        <p class="lead" style=" font-family: 'Anton', sans-serif; font-size: 18px;">
-            Rating : {{product.rate}} 
+        <p class="lead" style="font-size: 18px;">
+          Rating : <i class="bi bi-award-fill" style="color: gold;"></i>{{product.rate}} 
           </p>
         <p class="lead">
           <button class="btn btn-outline-primary" routerLink="/home">Back to Home page</button>
