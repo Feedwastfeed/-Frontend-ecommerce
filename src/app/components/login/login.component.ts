@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit{
     .subscribe((res:any)=>{
       localStorage.setItem('role',res.object.role);
       if(res.object.role=="CUSTOMER"){
+        console.log(res);
+        console.log(this.authService.currentUserCustomer);
       console.log("currentUserCustomer Created")
       this.authService.currentUserCustomer.id = res.object.id;
       this.authService.currentUserCustomer.email= res.object.email;

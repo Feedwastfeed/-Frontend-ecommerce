@@ -56,8 +56,8 @@ export class AuthService {
      }
 
      userLogout(){
-      this.currentUserAdmin=null;
-      this.currentUserCustomer=null;
+      this.currentUserAdmin=new Admin();
+      this.currentUserCustomer=new Customer();
       localStorage.removeItem("role");
       localStorage.removeItem("token");
       this.router.navigate(['/home']);
