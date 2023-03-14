@@ -1,0 +1,46 @@
+.table {
+    font-size: 15px;
+    border: 1px solid lightgray;
+  }
+  
+  .table, .td {
+    text-align: left;
+  }
+  
+  .tdchild{
+      text-align: center;
+  }
+  .table-header {
+    font-weight: bold;
+  }
+  
+  .table-header.table-row {
+    border-bottom: 2px solid gray;
+  }
+  
+  .table-row {
+    display: block;
+    white-space: nowrap;
+    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+  }
+  .table-row:last-child {
+    border: none
+  }
+  .td {
+    display: inline-block;
+    padding: 15px;
+    width: 15%;
+  }
+  
+  .td:nth-child(0) {
+      width: calc(5vw);
+    }
+  
+    .td:nth-child(1) {
+      width: calc(5vw);
+    }
+    
+  .child-row {
+    background-color: #e8e8e8;
+  }

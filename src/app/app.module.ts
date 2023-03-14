@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CartComponent } from './components/cart/cart/cart.component';
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CartComponent
+    CartComponent,
+    CustomerOrderComponent
   ],
   imports: [
     BrowserModule,

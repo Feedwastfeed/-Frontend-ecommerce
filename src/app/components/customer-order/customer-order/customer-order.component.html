@@ -1,0 +1,36 @@
+<div class="table">
+    <div class="table-header table-row">
+      <div class="td">#</div>
+      <div class="td">Date</div>
+      <div class="td">Payment Type</div>
+      <div class="td">Address</div>
+      <div class="td">Total Price</div>
+      <div class="td">Products</div>
+    </div>
+    <div class="table-row" *ngFor="let order of orders; let currentIndex =index">
+      <div >
+        <div class="td">{{order.id}}</div>
+        <div class="td">{{order.submitDate}}</div>
+        <div class="td">{{order.paymentType}}</div>
+        <div class="td">{{getAddress(currentIndex)}}</div>
+        <div class="td">{{order.totalPrice}}</div>
+        <div class="td" (click)="expanded[order.id] = !expanded[order.id]">
+            <span *ngIf="expanded[order.id]"><button>hide product</button></span>
+            <span *ngIf="!expanded[order.id]"><button>Show product</button></span>
+        </div>
+        <div [@detailExpand]="expanded[order.id] ? 'expanded' : 'collapsed'">
+            <div class="table-header table-row child-row">
+              <div class="td"></div>
+              <div class="td">Name</div>
+              <div class="td">Price</div>
+              <div class="td">Amount</div>
+            </div>
+            <div  class="child-row" *ngFor="let products of order.orderHasProductsDTO">
+              <div class="td"></div>
+              <div class="td">{{products.product.name}}</div>
+              <div class="td">{{products.product.price}}</div>
+              <div class="td">{{products.amount}}</div>
+            </div>
+      </div>
+    </div>
+  </div>

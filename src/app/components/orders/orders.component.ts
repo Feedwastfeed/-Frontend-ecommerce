@@ -23,7 +23,6 @@ ngOnInit(): void {
     this.orderservice.getAllOrders().subscribe(
       response =>{
         this.orders=response.data;
-        console.log(response.data);
       });
 }
 getAddress(index : number):String{

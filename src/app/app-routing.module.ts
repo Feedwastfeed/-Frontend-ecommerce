@@ -4,6 +4,7 @@ import { ManageProductsComponent } from './admin/components/manage-products/mana
 import { CartComponent } from './components/cart/cart/cart.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'manageproducts', component: ManageProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'customerorders/:customerid', component: CustomerOrderComponent },
   { path: 'category/:categoryid', component: CategoryDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
