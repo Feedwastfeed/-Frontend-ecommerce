@@ -17,7 +17,9 @@ export class AppComponent {
   cart = 'bi bi-cart-check';
   title = 'ecommerce';
 
-  constructor(private cartServices: CartService,public authService:AuthService,private router:Router){}
+  constructor(private cartServices: CartService,public authService:AuthService,private router:Router){
+    this.walletValue();
+  }
  
 
  countCart():number{
@@ -34,5 +36,9 @@ export class AppComponent {
   console.log(this.authService.isLoggedIn());
   
   this.router.navigate(['/login'])
+ }
+ walletValue(){
+  console.log(this.authService.getCustomerData())
+  return "$"+this.authService.getCustomerData().walletLimit;
  }
 }

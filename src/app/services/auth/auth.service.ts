@@ -62,10 +62,6 @@ export class AuthService {
       localStorage.removeItem("token");
       this.router.navigate(['/home']);
      };
-   //   isUser():boolean{
-   //    if(this.isCustomer()&&this.isAdmin()) return true;
-   //    return false;
-   //   }
      isCustomer():boolean{
       if (localStorage.getItem('role')=='CUSTOMER') {
          return true;
@@ -81,10 +77,16 @@ export class AuthService {
       }
       return false;
      }
-     getCurrentUserId(){
-      return this.getCurrentUser().id
+     getCurrentUserId():number{
+      return this.getCurrentUser().id;
      }
-     getCurrentUser(){
+     getCustomerData(): Customer{
+      return this.currentUserCustomer;
+     }
+     getAdminData(): Admin{
+      return this.currentUserAdmin;
+     }
+     getCurrentUser():User{
       if (localStorage.getItem('role')=="CUSTOMER") {
          return this.currentUserCustomer;
       }else if(localStorage.getItem('role')=="ADMIN"){

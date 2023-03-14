@@ -28,6 +28,13 @@
             <span id="boot-icon" [class]="cart"></span>
             <span class="cart_value" [innerHTML]="countCart()" ></span>
         </a>
+        <a mat-button *ngIf="authService.isLoggedIn() && authService.isCustomer()" [matMenuTriggerFor]="wallet">
+          <i class="bi bi-wallet2"></i>
+          <span></span>
+        </a>
+        <mat-menu #wallet="matMenu">
+          <a mat-menu-item [innerHTML]="'Wallet: '+walletValue()"></a>
+        </mat-menu>
         <mat-menu #usermenu="matMenu">
           <a mat-menu-item>Profile</a>
           <a mat-menu-item>Orders</a>
