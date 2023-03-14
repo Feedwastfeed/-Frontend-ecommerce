@@ -1,0 +1,56 @@
+<div class="container" style="width: 100%;">
+  <div class="row mt-5" style="width: 100%;">
+    <div class="spContainer mx-auto">
+      <div class="card px-4 py-5 border-0 shadow">
+        <div class="d-inline text-left mb-3">
+          <h3 class="text-center font-weight-bold">Register</h3>
+          <p class="text-center">Welcome To The E-Commerce Website</p>
+        </div>
+        <form [formGroup]="authRegistrationDto" (submit)="submit()">
+        <div class="d-inline text-center mb-0">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -3%;">Username </b><input class="text-center form-control inpSp" formControlName="userName" type="text" placeholder="Username">
+          </div>
+        </div><div class="d-inline text-center mb-0">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -1%;">E-mail </b><input class="text-center form-control inpSp" formControlName="email" type="email" placeholder="E-Mail">
+          </div>
+        </div>
+        <div class="d-inline text-center mb-0">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -3%;">Password </b><input class="text-center form-control inpSp" formControlName="password" type="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="d-inline text-center mb-0">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -8%;">Confirm Password </b> <input class="text-center form-control inpSp" type="password" placeholder="Confirm Password">
+          </div>
+        </div>
+        <div class="d-inline text-center mb-3">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -1%;">Phone </b><input class="text-center form-control inpSp" formControlName="phone" type="tel" placeholder="Phone">
+          </div>
+        </div>
+        <div class="d-inline text-center mb-3">
+          <div class="form-group mx-auto">
+            <b style="margin-left: -11%; padding-left: 10%;">Male </b><input [checked]="true" class="form-check-input" value="true" formControlName="isMale" type="radio" >
+            <b style="margin-left: 6%;">Female</b><input class="form-check-input" formControlName="isMale" type="radio" value="false">
+
+          </div>
+        </div>
+        <div class="d-inline text-left mb-3">
+          <div class="form-group mx-auto" style="padding-left: 35%;">
+            <button style="width: 30%;border-radius: 20px;" class="btn mx-auto btn-default btn-primary" [disabled]="!authRegistrationDto.valid" type="submit"><i class="bi bi-box-arrow-in-right"></i> Register</button>
+            <a class="text-black text-center center font-weight-bold regStr" routerLink="/login" style="margin-left: 1%;">Already Have An Account?</a>
+          </div>
+          </div>
+        </form>
+        
+          <div class="d-inline text-left mt-3">
+          <div class="form-group mx-auto mb-0">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
