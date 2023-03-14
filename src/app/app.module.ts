@@ -17,12 +17,11 @@ import { MaterialModule } from './shared/material/material.module';
 import { AdminModule } from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
-import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
-
+import { CartComponent } from './components/cart/cart/cart.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +37,8 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
+    CartComponent,
     UserProfileComponent,
-    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
@@ -52,11 +51,11 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
     ReactiveFormsModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

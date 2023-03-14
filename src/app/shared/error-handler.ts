@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 
+
 export class ErrorHandler{
     handleError(errorResponse:HttpErrorResponse){
         if(errorResponse.error instanceof ErrorEvent){

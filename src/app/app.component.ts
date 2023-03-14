@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResponseViewModel } from './models/responseviewmodel';
 import { CartService } from './services/cart/cart.service';
 import { AuthService } from './services/auth/auth.service';
@@ -11,14 +11,26 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
+
+  cart = 'bi bi-cart-check';
   title = 'ecommerce';
 
-  constructor(private cartServices: CartService,private authService:AuthService,private router:Router){}
+  constructor(private cartServices: CartService,public authService:AuthService,private router:Router){
+    this.walletValue();
+  }
+  ngOnInit(): void {
+    this.authService.saveData();
+  }
+ 
  
 
  countCart():number{
   // console.log(this.cartServices.countProductCart());
+  if (this.cartServices.countProductCart()>0) {
+    this.cart='bi bi-cart-check-fill';
+  }
   return this.cartServices.countProductCart();
  }
 
@@ -26,7 +38,10 @@ export class AppComponent {
   console.log(this.authService.isLoggedIn(),this.authService.isCustomer(),this.authService.isAdmin(),this.authService.getCurrentUserId());
   this.authService.userLogout();
   console.log(this.authService.isLoggedIn());
-  this.router.navigate(['/home'])
+  
+  this.router.navigate(['/login'])
  }
-
+ walletValue(){
+  return "$"+this.authService.getCustomerData().walletLimit;
+ }
 }

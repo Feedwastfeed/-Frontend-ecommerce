@@ -20,7 +20,7 @@
               <button (click)="viewProductDetails(product)" class="btn btn-outline-info" >
                 View details
               </button>
-              <button class="btn btn-outline-info">Add to cart</button >
+              <button class="btn btn-outline-info" (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()">Add to cart</button >
             </div>
           </div>
         </div>

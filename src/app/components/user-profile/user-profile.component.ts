@@ -36,9 +36,5 @@ export class UserProfileComponent implements OnInit{
       return gender;
     }
   }
-  display = false;
-  onPress() {
-    
-    this.display = !this.display;
-  }
+  
 }

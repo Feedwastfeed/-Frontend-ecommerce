@@ -7,29 +7,30 @@ import { Observable, Subject } from 'rxjs';
 })
 export class AlertService {
   private subject = new Subject<any>();
-  private keepAfterNavigationChange=false;
-  constructor(private router: Router) { 
-    router.events.subscribe(event =>{
-      if(event instanceof NavigationStart){
-        if(this.keepAfterNavigationChange){
-          this.keepAfterNavigationChange=false
+  private keepAfterNavigationChange = false;
+  constructor(private router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        if (this.keepAfterNavigationChange) {
+          this.keepAfterNavigationChange = false
         }
-        else{
+        else {
           this.subject.next(null);
         }
       }
     })
   }
 
-  success(message:string,keepAfterNavigationChange = false){
+  success(message: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({type: 'success',text:message});
+    this.subject.next({ type: 'success', text: message });
   }
-  error(message: string,keepAfterNavigationChange = false){
-    this.keepAfterNavigationChange=keepAfterNavigationChange;
-    this.subject.next({type: 'error',text:message})
+  error(message: string, keepAfterNavigationChange = false) {
+    this.keepAfterNavigationChange = keepAfterNavigationChange;
+    this.subject.next({ type: 'error', text: message })
   }
-  getMessage(): Observable<any>{
+  getMessage(): Observable<any> {
     return this.subject.asObservable();
   }
 }
+  

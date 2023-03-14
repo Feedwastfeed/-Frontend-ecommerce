@@ -8,21 +8,25 @@ import { AuthService } from './auth.service';
 })
 export class TokenInterceptorService{
 
+  
+  constructor(private injector:Injector) { }
 
-//   constructor(private injector:Injector) { }
+  intercept(req: HttpRequest<any>, next: HttpHandler){
+    var tokenReq = req.clone();
+    const authService = this.injector.get(AuthService);
+    
+    if(authService.isLoggedIn()==true){
+      console.log("Interceptor Token");
+     tokenReq = req.clone({
+      setHeaders:
+      {
+        Authorization: `Bearer ${authService.getToken()}`
+      }
+    })
+       }
+       return next.handle(tokenReq);
+ 
 
-//   intercept(req: HttpRequest<any>, next: HttpHandler){
-//     const authService = this.injector.get(AuthService);
-//     if(`${authService.isLoggedIn()}`){
-//     const tokenReq = req.clone({
-//       setHeaders:
-//       {
-//         Authorization: `Bearer ${authService.getToken()}` clasdsads/auth?Authorization= Bearer saxax.asdasd.asdasd
-//       }
-//     })
-//       return next.handle(tokenReq);
-//   }
-//   return next.handle(req.clone());
-// }
-// }
+}
+
 }

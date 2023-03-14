@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
 export class CategoryDetailsComponent {
 
   category=new Category();
-  constructor(private route: ActivatedRoute, private categoryservice: CategoryService , private router:Router) {
+  constructor(private route: ActivatedRoute, private categoryservice: CategoryService , private router:Router, private cartService: CartService,public authService:AuthService) {
 
     route.paramMap.subscribe((params: ParamMap) => {
 
@@ -35,5 +37,8 @@ export class CategoryDetailsComponent {
     })
   }
 
+  addProductToCart(product: Product): void{
+    this.cartService.addProductToCart(product);
+  }
 
 }
