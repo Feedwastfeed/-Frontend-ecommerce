@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit{
     } 
       alert(res.message)
       localStorage.setItem('token',res.object.token);
-      this.authService.saveData();
+      this.authService.saveData() ;
       this.router.navigate(['/home']);
     },error=>{
       console.log(error)
