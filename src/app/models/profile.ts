@@ -1,7 +1,10 @@
 
+
 export class Profile {
-    username: string;
-    email: string;
-    phone: string;
-    
+  username:String;
+  email:String;
+  phone:Number;
+  address:String;
+  isMale:Boolean;
+  walletLimit:String;
 }

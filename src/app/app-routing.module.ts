@@ -9,17 +9,27 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { UserAuthGuard } from './guards/user-auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent,},
+  { path: 'category/:categoryid', component: CategoryDetailsComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'products/:productid', component: ProductDetailsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'manageproducts', component:ManageProductsComponent },
   { path: 'orders', component: OrdersComponent },
   {path: 'profile',component:UserProfileComponent},
+  {path:'profile-edit',component:UserProfileComponent},
   { path: 'category/:categoryid', component: CategoryDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
+  
+
+
 ];
 
 @NgModule({
