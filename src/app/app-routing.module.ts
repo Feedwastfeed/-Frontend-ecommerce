@@ -4,6 +4,7 @@ import { ManageProductsComponent } from './admin/components/manage-products/mana
 import { CartComponent } from './components/cart/cart/cart.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -58,7 +59,11 @@ const routes: Routes = [
   { 
     path: 'orders', 
     component: OrdersComponent,
-    canActivate:[UserAuthGuard] 
+    canActivate:[AdminAuthGuard] 
+  },
+  { path: 'customerorders/:customerid',
+    component: CustomerOrderComponent,
+    canActivate:[UserAuthGuard]  
   },
   {path: 'profile',component:UserProfileComponent},
   { path: 'category/:categoryid', component: CategoryDetailsComponent },
@@ -71,7 +76,7 @@ const routes: Routes = [
     path: '**', 
     component: PageNotFoundComponent 
   },
-  
+
 
 
 ];

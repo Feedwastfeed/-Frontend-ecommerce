@@ -7,6 +7,8 @@ import { ResponseViewModel } from 'src/app/models/responseviewmodel';
 import { Customer } from 'src/app/models/customer';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,11 +16,11 @@ export class AuthService {
    currentUserCustomer = new Customer();
    currentUserAdmin = new Admin();
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router,public dialog:MatDialog) { }
   private errorHandler:ErrorHandler=new ErrorHandler();
 
  private _registerUrl= `http://localhost:9090/ecommerce/auth/register`;
- private _loginUrl= `http://localhost:9090/ecommerce/auth/login`;
+ private _loginUrl= `http://localhost:9090/ecommerce/auth/authenticate`;
  private _adminRegisterUrl=`http://localhost:9090/ecommerce/auth/admin/register`;
  private _userUrl = 'http://localhost:9090/ecommerce/customer/'
  private _usersURL='http://localhost:9090/ecommerce/customer/all';
@@ -125,7 +127,7 @@ export class AuthService {
          this.currentUserAdmin.username=localStorage.getItem('username');
       } else if (localStorage.getItem('role')=="CUSTOMER") {
       
-         this.currentUserCustomer.id = +localStorage.getItem('id');
+      this.currentUserCustomer.id = +localStorage.getItem('id');
       this.currentUserCustomer.email= localStorage.getItem('email');
       this.currentUserCustomer.phone=localStorage.getItem('phone');
       this.currentUserCustomer.username=localStorage.getItem('username');
@@ -134,5 +136,12 @@ export class AuthService {
      
       } 
       }
+      openDialog(message:String){
+         this.dialog.open(DialogBoxComponent,{
+           width:'300px',
+           height:'100px',
+           data: message
+         })
+       }
 
   }

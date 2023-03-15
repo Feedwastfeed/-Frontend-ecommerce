@@ -1,4 +1,4 @@
-<div class="container" style="width: 100%;">
+<!-- <div class="container" style="width: 100%;">
   <div class="row mt-5" style="width: 80%;">
     <div class="spContainer mx-auto">
       <div class="card px-4 py-5 border-0 shadow">
@@ -40,4 +40,29 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<div class="wrapper">
+        <div class="logo">
+          <img src="https://www.freepnglogos.com/uploads/wave-png/drawing-waves-png-pictures-13.png" alt="">
+      </div>
+      <div class="text-center mt-4 name">
+          E-Mart
+      </div>
+      <form class="p-3 mt-3" [formGroup]="authCredentialsDto" (submit)="submit()">
+          <div class="form-field d-flex align-items-center">
+              <span class="bi bi-person" style="font-size:x-large;"></span>
+              <input formControlName="userName" type="text" name="userName" id="userName" placeholder="Username">
+          </div>
+          <div class="form-field d-flex align-items-center">
+              <span class="bi bi-key-fill" style="font-size:x-large;"></span>
+              <input formControlName="password" name="password" id="pwd" placeholder="Password" [type]="showPass?'password':'text'">
+              <button mat-icon-button matSuffix (click)="showPass = !showPass" [attr.aria-label]="'Hide Password'" type="button">
+                <mat-icon [class]="showPass ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'" ></mat-icon>
+              </button>
+          </div>
+          <button class="btn mt-3" type="submit" [disabled]="!authCredentialsDto.valid">Login</button>
+      </form>
+      <div class="text-center fs-6">
+          <a routerLink="/register">Sign up</a>
+      </div>
+  </div>

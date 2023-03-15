@@ -44,4 +44,8 @@ export class AppComponent implements OnInit {
  walletValue(){
   return "$"+this.authService.getCustomerData().walletLimit;
  }
+
+ orderpath(){
+  return "customerorders/"+this.authService.getCustomerData().id;
+ }
 }

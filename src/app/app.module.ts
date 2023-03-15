@@ -21,6 +21,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
@@ -39,6 +42,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     PageNotFoundComponent,
     CartComponent,
     UserProfileComponent,
+    CustomerOrderComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     {
