@@ -18,14 +18,14 @@ import { AdminModule } from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
-import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +41,12 @@ import { AdminRegisterComponent } from './components/admin-register/admin-regist
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CartComponent,
     UserProfileComponent,
     CustomerOrderComponent,
     DialogBoxComponent,
-    AdminRegisterComponent
+    AdminRegisterComponent,
+    CartComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authService.saveData();
+    this.cartServices.getCartValue();
   }
  
  

@@ -6,7 +6,7 @@ export class Orders {
     id: number;
     customerOrderDTO: Customer;
     addressDTO: Address;
-    totalPrice: number;
+    totalPrice: number=0;
     isSubmitted: boolean;
     paymentType: String;
     submitDate: Date;

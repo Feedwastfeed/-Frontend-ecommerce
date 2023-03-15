@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenInterceptorService } from 'src/app/services/auth/token-interceptor.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit{
     private router:Router,
     private formBuilder: FormBuilder,
     private alertService:AlertService,
-    
+    private cartService: CartService
     ){}
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('phone',res.object.phone)
       localStorage.setItem('username',res.object.username)
       if(res.object.role=="CUSTOMER"){
-      
+        
         localStorage.setItem('walletLimit',res.object.walletLimit);
         localStorage.setItem('dob',res.object.dob);
         localStorage.setItem('walletLimit',res.object.walletLimit);
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit{
       
       localStorage.setItem('token',res.object.token);
       this.authService.saveData() ;
+      this.cartService.getCartValue();
       this.router.navigate(['/home']);
     } else{
       this.authService.openDialog(res.message);

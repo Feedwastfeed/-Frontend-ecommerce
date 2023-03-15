@@ -13,6 +13,16 @@ export class ProductService {
 
   constructor(private _http: HttpClient) { }
 
+
+  checkStock(productOrder: any): Observable<ResponseViewModel>{
+    console.log(productOrder);
+    return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/products/stock', productOrder);
+  }
+  updateStock(productOrder: any): Observable<ResponseViewModel>{
+    console.log(productOrder);
+    return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/products/stock', productOrder);
+  }
+
   getProductById(id: number): Observable<ResponseViewModel> {
 
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/' + id);
