@@ -17,7 +17,7 @@ constructor(private router:Router , private categoryservice:CategoryService){
 
 ngOnInit(): void {
   this.categoryservice.getAllCategories().subscribe(
-    response=>{ 
+    response=>{
        this.categories=response.data;
     })
 };

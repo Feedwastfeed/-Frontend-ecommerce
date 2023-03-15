@@ -24,6 +24,7 @@ import { CartComponent } from './components/cart/cart/cart.component';
 import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     ProductFilterPipe,
     PageNotFoundComponent,
     CartComponent,
+    UserProfileComponent,
     CustomerOrderComponent,
     DialogBoxComponent
   ],

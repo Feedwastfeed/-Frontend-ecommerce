@@ -39,7 +39,7 @@
           <a mat-menu-item [innerHTML]="'Wallet: '+walletValue()"></a>
         </mat-menu>
         <mat-menu #usermenu="matMenu">
-          <a mat-menu-item>Profile</a>
+          <a mat-menu-item routerLink="profile">Profile</a>
           <a mat-menu-item [routerLink]="orderpath()">Orders</a>
           <a mat-menu-item (click)="logout()"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
         </mat-menu>
