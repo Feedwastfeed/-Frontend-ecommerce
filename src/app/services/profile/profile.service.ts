@@ -22,5 +22,8 @@ export class ProfileService {
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/customer/' + this.id);
   }
 
-  
+  getCustomerAddressById():Observable<ResponseViewModel>
+  {
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/address/'+this.id);
+  }
 }

@@ -42,3 +42,16 @@ body {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+.selectLabel{
+    margin-top: 20px;
+    font-size: 11px;
+}
+
+.select{
+    appearance: none;
+  background-color: transparent;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+}
