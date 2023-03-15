@@ -33,9 +33,9 @@ export class ProductListComponent implements OnInit{
   }
 
   deleteProduct(product: Product):void{
-    // this.productservice.delete(product.id).subscribe(
-    //   response => {
-    //       alert(response.message);
-    //   });
+    this.productservice.delete(product.id).subscribe(
+      response => {
+          alert(response.message);
+      });
   }
 }
