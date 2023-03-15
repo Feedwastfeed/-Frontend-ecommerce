@@ -25,6 +25,7 @@ import { CustomerOrderComponent } from './components/customer-order/customer-ord
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +44,14 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     CartComponent,
     UserProfileComponent,
     CustomerOrderComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    AdminRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AdminModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
