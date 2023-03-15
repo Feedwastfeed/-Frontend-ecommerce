@@ -7,6 +7,7 @@ import { OrderHasProductId } from 'src/app/models/orderhasproductid';
 import { Orders } from 'src/app/models/orders';
 import { Product } from 'src/app/models/product';
 import { ResponseViewModel } from 'src/app/models/responseviewmodel';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class CartService {
   public scoreSubject = new Subject<number>();
 
 
-  constructor(private _http: HttpClient) {
-    if (1 > 0) { // check user logged in here
-      this.getcart(26).subscribe(  // 26 is customer id where take it from token
+  constructor(private _http: HttpClient,private authService:AuthService) {
+    if (authService.isLoggedIn() && authService.isCustomer()) {
+      this.getcart(authService.getCustomerData().id).subscribe(  // 26 is customer id where take it from token
         response => {
           if (response.data != null) {
             this.orders = response.data;

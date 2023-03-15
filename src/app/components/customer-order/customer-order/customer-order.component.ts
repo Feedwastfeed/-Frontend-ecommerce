@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Orders } from 'src/app/models/orders';
 import { OrderService } from 'src/app/services/order/order.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-order',
@@ -16,20 +18,31 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ],
 })
 export class CustomerOrderComponent implements OnInit {
-orders:Orders[]=[];
-expanded: {[key: string]: boolean} = {};
-constructor(private orderService:OrderService){}
-  ngOnInit(): void {
-    // get Currentcustomer id by token
-    this.orderService.getCustomerOrder(2).subscribe(
-      response=>{
-        this.orders=response.data;
-        console.log(response);
-      }
-    );
-  }
-  getAddress(index : number):String{
-    let fullAddress :string=this.orders[index].addressDTO.buildingNum.toString()+" "+this.orders[index].addressDTO.street+" "+this.orders[index].addressDTO.area; 
-    return fullAddress;
+  orders:Orders[]=[];
+  expanded: {[key: string]: boolean} = {};
+  constructor(private orderService:OrderService,private authService:AuthService,private router:Router,private route: ActivatedRoute){
+    route.paramMap.subscribe((params: ParamMap) => {
+    if (params.get('customerid')) {
+      this.orderService.getCustomerOrder(+params.get('customerid'))
+        .subscribe(response => {
+          this.orders = response.data;
+        })
+    }
+    });
+}
+ngOnInit(): void {
+  // get Currentcustomer id by token
+  this.orderService.getCustomerOrder(this.authService.getCurrentUser().id).subscribe(
+    response=>{
+      this.orders=response.data;
+      console.log(response);
+    }
+  );
+}
+
+getAddress(index : number):String{
+  let fullAddress :string=this.orders[index].addressDTO.buildingNum.toString()+" "+this.orders[index].addressDTO.street+" "+this.orders[index].addressDTO.area; 
+  return fullAddress;
   }
 }
+
