@@ -1,8 +1,8 @@
-<div class="table">
+<div class="table" style="border: 1px solid black;">
     <div class="table-header table-row">
       <div class="td">#</div>
       <div class="td">Date</div>
-      <div class="td">Payment Type</div>
+      <div class="td" style="text-align: center;">Payment Type</div>
       <div class="td">Address</div>
       <div class="td">Total Price</div>
       <div class="td">Products</div>
@@ -11,12 +11,12 @@
       <div >
         <div class="td">{{order.id}}</div>
         <div class="td">{{order.submitDate}}</div>
-        <div class="td">{{order.paymentType}}</div>
+        <div class="td" style="text-align: center;">{{order.paymentType}}</div>
         <div class="td">{{getAddress(currentIndex)}}</div>
         <div class="td">{{order.totalPrice}}</div>
         <div class="td" (click)="expanded[order.id] = !expanded[order.id]">
-            <span *ngIf="expanded[order.id]"><button>hide product</button></span>
-            <span *ngIf="!expanded[order.id]"><button>Show product</button></span>
+            <span *ngIf="expanded[order.id]"><button mat-button style="background-color: lightgrey;">Hide product</button></span>
+            <span *ngIf="!expanded[order.id]"><button mat-button style="background-color: lightgrey;">Show product</button></span>
         </div>
         <div [@detailExpand]="expanded[order.id] ? 'expanded' : 'collapsed'">
             <div class="table-header table-row child-row">
