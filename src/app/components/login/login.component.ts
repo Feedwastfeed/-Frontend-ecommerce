@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit{
    console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
+      console.log(res)
       if(res.status==true){
       console.log(res);
       localStorage.setItem('role',res.object.role);
@@ -63,11 +64,14 @@ export class LoginComponent implements OnInit{
       this.authService.saveData() ;
       this.cartService.getCartValue();
       this.router.navigate(['/home']);
-    } else{
+    } else if(res.code==411){
       this.authService.openDialog(res.message);
+    } else{
+      this.authService.openDialog('Unkown Error Code');
     }
     },error=>{
-       this.authService.openDialog("Password is incorrect!");
+      console.log(error);
+       this.authService.openDialog("Password is Incorrect!");
       this.alertService.error(error);
     })
   }
