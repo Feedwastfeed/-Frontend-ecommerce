@@ -1,83 +1,101 @@
 <!-- <input type="file" (change)="addImage($event)"/> -->
 <div class="container">
-<div [formGroup]="productform" style="margin-top: 30px;">
-    <div class="form-group">
-      <label for="Productname">Product name</label>
-      <input #inputname formControlName="productname" type="text" class="form-control" id="productname" placeholder="product name" [class.is-valid]="!productform.controls['productname'].errors" [class.is-invalid]="productform.controls['productname'].errors" >
-      <div class="text-danger" *ngIf="productform.controls['productname'].errors">  
-        <small  *ngIf="productform.controls['productname'].hasError('required')" class="form-text text-danger">Required Field</small>
-        <small  *ngIf="productform.controls['productname'].hasError('minlength')" class="form-text text-danger">Min Length</small>
-        <small  *ngIf="productform.controls['productname'].hasError('maxlength')" class="form-text text-danger"> Max Length </small>
-    </div>
-    </div>
-
-    
-    <div class="form-outline">
-        <label for="description">Description</label>
-        <textarea formControlName="productdesc" class="form-control" id="description" rows="4" placeholder="Description" [class.is-valid]="!productform.controls['productdesc'].errors" [class.is-invalid]="productform.controls['productdesc'].errors"></textarea>
-        <div class="text-danger" *ngIf="productform.controls['productdesc'].errors">
-            <small  *ngIf="productform.controls['productdesc'].hasError('required')" class="form-text text-danger">Required Field</small>
-            <small  *ngIf="productform.controls['productdesc'].hasError('minlength')" class="form-text text-danger">Min Length</small>
-            <small  *ngIf="productform.controls['productdesc'].hasError('maxlength')" class="form-text text-danger">Max Length</small>
+    <div [formGroup]="productform" style="margin-top: 30px;">
+        <div class="form-group">
+            <label for="Productname">Product name</label>
+            <input #inputname formControlName="productname" type="text" class="form-control" id="productname"
+                placeholder="product name" [class.is-valid]="!productform.controls['productname'].errors"
+                [class.is-invalid]="productform.controls['productname'].errors">
+            <div class="text-danger" *ngIf="productform.controls['productname'].errors">
+                <small *ngIf="productform.controls['productname'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+                <small *ngIf="productform.controls['productname'].hasError('minlength')"
+                    class="form-text text-danger">Min Length</small>
+                <small *ngIf="productform.controls['productname'].hasError('maxlength')" class="form-text text-danger">
+                    Max Length </small>
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-outline" style="width: 22rem;">
-        <label class="form-label" for="form1">Price</label>
-        <i class="fas fa-dollar-sign trailing"></i>
-        <input formControlName="productprice" type="text" id="price" class="form-control form-icon-trailing"/>
-        <div class="text-danger" *ngIf="productform.controls['productprice'].errors">
-            <small  *ngIf="productform.controls['productprice'].hasError('min')" class="form-text text-danger"> Below minimum number</small>
-            <small  *ngIf="productform.controls['productprice'].hasError('required')" class="form-text text-danger">Required Field</small>
+        <div class="form-outline">
+            <label for="description">Description</label>
+            <textarea formControlName="productdesc" class="form-control" id="description" rows="4"
+                placeholder="Description" [class.is-valid]="!productform.controls['productdesc'].errors"
+                [class.is-invalid]="productform.controls['productdesc'].errors"></textarea>
+            <div class="text-danger" *ngIf="productform.controls['productdesc'].errors">
+                <small *ngIf="productform.controls['productdesc'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+                <small *ngIf="productform.controls['productdesc'].hasError('minlength')"
+                    class="form-text text-danger">Min Length</small>
+                <small *ngIf="productform.controls['productdesc'].hasError('maxlength')"
+                    class="form-text text-danger">Max Length</small>
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-outline" style="width: 22rem;">
-        <label class="form-label" for="form1">Stock</label>
-        <i class="fas fa-dollar-sign trailing"></i>
-        <input formControlName="productstock" type="number" id="stock" class="form-control form-icon-trailing" />
-        <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
-            <small  *ngIf="productform.controls['productstock'].hasError('min')" class="form-text text-danger"> Below minimum number</small>
-            <small  *ngIf="productform.controls['productstock'].hasError('required')" class="form-text text-danger">Required Field</small>
-            <small  *ngIf="productform.controls['productstock'].hasError('pattern')" class="form-text text-danger">Integer number only</small>
+        <div class="form-outline" style="width: 22rem;">
+            <label class="form-label" for="form1">Price</label>
+            <i class="fas fa-dollar-sign trailing"></i>
+            <input formControlName="productprice" type="text" id="price" class="form-control form-icon-trailing" />
+            <div class="text-danger" *ngIf="productform.controls['productprice'].errors">
+                <small *ngIf="productform.controls['productprice'].hasError('min')" class="form-text text-danger"> Below
+                    minimum number</small>
+                <small *ngIf="productform.controls['productprice'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-outline" style="width: 22rem;">
-        <label class="form-label" for="form1">rate</label>
-        <i class="fas fa-dollar-sign trailing"></i>
-        <input formControlName="productrate" type="text" min="0" max="5" id="rate" class="form-control form-icon-trailing" />
-        <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
-            <small  *ngIf="productform.controls['productrate'].hasError('min')" class="form-text text-danger"> Below minimum number</small>
-            <small  *ngIf="productform.controls['productrate'].hasError('required')" class="form-text text-danger">Required Field</small>
-            <small  *ngIf="productform.controls['productrate'].hasError('max')" class="form-text text-danger"> Exceeded maximum number</small>
+        <div class="form-outline" style="width: 22rem;">
+            <label class="form-label" for="form1">Stock</label>
+            <i class="fas fa-dollar-sign trailing"></i>
+            <input formControlName="productstock" type="number" id="stock" class="form-control form-icon-trailing" />
+            <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
+                <small *ngIf="productform.controls['productstock'].hasError('min')" class="form-text text-danger"> Below
+                    minimum number</small>
+                <small *ngIf="productform.controls['productstock'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+                <small *ngIf="productform.controls['productstock'].hasError('pattern')"
+                    class="form-text text-danger">Integer number only</small>
+            </div>
         </div>
-    </div><br>
-    <div class="from-control" style="margin-right:500px;position: relative;right:17px;">
-    <label class = "col-sm-10">Categories</label>
-    <div class="col-sm-10">
-    <select  formControlName="productcategory"  name="Categories" class="form-control">
-     <option  *ngFor="let category of categories">{{category.name}}</option>
-    </select>
-    <div>
-        <small *ngIf="productform.controls['productcategory'].hasError('required')" class="form-text text-danger"> Please select a category</small>
-    </div>
+
+
+        <div class="form-outline" style="width: 22rem;">
+            <label class="form-label" for="form1">rate</label>
+            <i class="fas fa-dollar-sign trailing"></i>
+            <input formControlName="productrate" type="text" min="0" max="5" id="rate"
+                class="form-control form-icon-trailing" />
+            <div class="text-danger" *ngIf="productform.controls['productstock'].errors">
+                <small *ngIf="productform.controls['productrate'].hasError('min')" class="form-text text-danger"> Below
+                    minimum number</small>
+                <small *ngIf="productform.controls['productrate'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+                <small *ngIf="productform.controls['productrate'].hasError('max')" class="form-text text-danger">
+                    Exceeded maximum number</small>
+            </div>
+        </div><br>
+        <div class="from-control" style="margin-right:500px;position: relative;right:17px;">
+            <label class="col-sm-10">Categories</label>
+            <div class="col-sm-10">
+                <select formControlName="productcategory" name="Categories" class="form-control">
+                    <option *ngFor="let category of categories">{{category.name}}</option>
+                </select>
+                <div>
+                    <small *ngIf="productform.controls['productcategory'].hasError('required')"
+                        class="form-text text-danger"> Please select a category</small>
+                </div>
+            </div>
+        </div><br>
+
+        <label class="form-label" for="customFile">Select image</label>
+        <input formControlName="productimage" type="file" (change)="setEvent($event)" class="form-control"
+            id="customFile" /><br>
+        <div>
+            <small *ngIf="productform.controls['productimage'].hasError('required')" class="form-text text-danger">
+                Please select an image</small>
         </div>
-    </div><br>
-         
-      <label class="form-label" for="customFile">Select image</label>
-      <input formControlName="productimage" type="file" (change)="setEvent($event)"  class="form-control" id="customFile" /><br>
-      <div>
-        <small  *ngIf="productform.controls['productimage'].hasError('required')"  class="form-text text-danger"> Please select an image</small>
-       </div>
-      <button type="button" [disabled]="productform.invalid" (click)="addImage();addProduct();"  class="btn btn-primary">Add Product</button>
+        <button type="button" [disabled]="productform.invalid" (click)="addImage();addProduct();"
+            class="btn btn-primary">Add Product</button>
     </div>
 </div>
-
-
-
-
-    

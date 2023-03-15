@@ -18,7 +18,8 @@ import { AdminModule } from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CartComponent } from './components/cart/cart/cart.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CartComponent } from './components/cart/cart/cart.component';
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CartComponent
+    CartComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,
