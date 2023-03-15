@@ -11,7 +11,7 @@ import { Address } from 'src/app/models/address';
 })
 export class UserProfileComponent implements OnInit{
 
-  profile:Profile;
+  profile = new Profile();
   profileAddress:Address [];
   constructor(private profileService:ProfileService ,private authService:AuthService){}
 
@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit{
     this.profileService.getCustomerById().subscribe(
       response=>{
         this.profile=response.data;
+        console.log(response);
       }
     );
     this.profileService.getCustomerAddressById().subscribe(
