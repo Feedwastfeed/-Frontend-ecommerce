@@ -53,7 +53,6 @@ export class ManageProductsComponent implements OnInit {
 
   addProduct() {
     var product = new Product();
-
     product.name = this.productform.value.productname;
     product.description = this.productform.value.productdesc;
     product.price = this.productform.value.productprice;

@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit{
     
     ){}
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home'])
+    }
   
     
     this.authCredentialsDto= this.formBuilder.group({
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit{
     } 
       alert(res.message)
       localStorage.setItem('token',res.object.token);
-      this.authService.saveData();
+      this.authService.saveData() ;
       this.router.navigate(['/home']);
     },error=>{
       console.log(error)
