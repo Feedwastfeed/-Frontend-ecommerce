@@ -125,7 +125,7 @@ export class AuthService {
          this.currentUserAdmin.username=localStorage.getItem('username');
       } else if (localStorage.getItem('role')=="CUSTOMER") {
       
-         this.currentUserCustomer.id = +localStorage.getItem('id') ;
+         this.currentUserCustomer.id = +localStorage.getItem('id');
       this.currentUserCustomer.email= localStorage.getItem('email');
       this.currentUserCustomer.phone=localStorage.getItem('phone');
       this.currentUserCustomer.username=localStorage.getItem('username');
