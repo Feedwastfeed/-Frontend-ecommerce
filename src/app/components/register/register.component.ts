@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { LoginComponent } from '../login/login.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +13,17 @@ import { LoginComponent } from '../login/login.component';
 })
 export class RegisterComponent {
  authRegistrationDto: FormGroup;
+ showPass=true;
 
  constructor(
   private authService:AuthService,
   private router:Router,
   private formBuilder: FormBuilder,
-  private alertService:AlertService
-  
+  private alertService:AlertService,
+  public dialog:MatDialog
   ){}
   ngOnInit(): void {
+    
   
     
     this.authRegistrationDto= this.formBuilder.group({
@@ -35,16 +38,22 @@ export class RegisterComponent {
     return  this.authRegistrationDto.get
   }
   submit(){
-    
 
     console.log(this.authRegistrationDto.value);
-    this.authService.register(this.authRegistrationDto.getRawValue())
-    .subscribe((res:any)=>{
-      console.log(res);
-      this.router.navigate(['/login']);
-    },error =>{
-      alert("Username Already Taken");
-      console.log(error);
-    })
+     this.authService.register(this.authRegistrationDto.getRawValue())
+     .subscribe((res:any)=>{
+      if(res.status==false){
+       console.log(res);
+       this.authService.openDialog(res.message);
+      }else{
+       this.authService.openDialog(res.message);
+       this.router.navigate(['/login']);
+
+      }
+     },error =>{
+       alert("Username Already Taken");
+       console.log(error);
+     })
   }
+ 
 }

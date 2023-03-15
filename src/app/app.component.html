@@ -5,8 +5,11 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-  
-      <i style="font-size: 23px;">E-mart</i>
+      <div class="logo">
+        <img src="https://www.freepnglogos.com/uploads/wave-png/wave-logo-png-8.png" alt="" style="width: 50px; border-radius: 20px;">
+    </div>
+      <i style="font-size: 23px;">E-Mart</i>
+    
       <div class="col-md-7 justify-content-start">
         <a mat-button routerLink="home" style="text-decoration: none;">Home</a>
         <a mat-button routerLink="contact" routerLinkActive="router-link-active" >Contact Us</a>
@@ -53,7 +56,7 @@
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>
-    <mat-toolbar class="example-footer">E-mart</mat-toolbar>
+    <mat-toolbar class="example-footer">E-Mart</mat-toolbar>
   </ng-container>
   
   

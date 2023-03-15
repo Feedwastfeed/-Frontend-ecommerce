@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit{
    console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
+      if(res.status==true){
+      console.log(res);
       localStorage.setItem('role',res.object.role);
       localStorage.setItem('id',res.object.id)
       localStorage.setItem('email',res.object.email)
@@ -55,16 +57,16 @@ export class LoginComponent implements OnInit{
       console.log("currentUserAdmin Created")
    
     } 
-      alert(res.message)
+      
       localStorage.setItem('token',res.object.token);
       this.authService.saveData() ;
       this.router.navigate(['/home']);
+    } else{
+      this.authService.openDialog(res.message);
+    }
     },error=>{
-      console.log(error)
-      if(error.status == 403){
-        alert("Username or Password is incorrect!")
-      };
-      console.log(this.alertService.error(error));
+       this.authService.openDialog("Password is incorrect!");
+      this.alertService.error(error);
     })
   }
 }

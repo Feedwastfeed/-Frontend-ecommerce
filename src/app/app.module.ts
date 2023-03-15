@@ -21,6 +21,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { CartComponent } from './components/cart/cart/cart.component';
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CartComponent
+    CartComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { CartComponent } from './components/cart/cart/cart.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     {

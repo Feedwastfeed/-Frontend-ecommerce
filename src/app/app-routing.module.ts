@@ -57,7 +57,7 @@ const routes: Routes = [
   { 
     path: 'orders', 
     component: OrdersComponent,
-    canActivate:[UserAuthGuard] 
+    canActivate:[AdminAuthGuard] 
   },
   { 
     path: '', 
