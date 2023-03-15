@@ -17,11 +17,11 @@
       <div class="col-md-5 justify-content-end">
         <a mat-button routerLink="login" *ngIf="!(authService.isLoggedIn())" style="text-decoration: none;">Login</a>
         <a mat-button routerLink="register" *ngIf="!(authService.isLoggedIn())" style="text-decoration: none;">Register</a>
-        <a mat-button *ngIf="authService.isLoggedIn() && authService.isAdmin()" [matMenuTriggerFor]="managementmenu" style="text-decoration: none;">Management</a>
+        <a mat-button *ngIf="authService.isLoggedIn() && authService.isAdmin()" [matMenuTriggerFor]="managementmenu" style="text-decoration: none;" [innerHTML]="'Management, Account: '+authService.getUsername()"></a>
         <mat-menu #managementmenu="matMenu">
           <a mat-menu-item routerLink="/orders">Dashboard</a>
           <a mat-menu-item routerLink="manageproducts">Add Products</a>
-          <a mat-menu-item>Add Admin</a>
+          <a mat-menu-item routerLink="/AdminRegister">Add Admin</a>
           <a mat-menu-item routerLink="products">Manage Products</a>
           <a mat-menu-item (click)="logout()"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
         </mat-menu>

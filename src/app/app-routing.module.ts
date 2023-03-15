@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { ContactComponent } from './components/contact/contact.component';
+import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   { 
     path: 'home',
     component: HomeComponent
+  },
+  { 
+    path: 'AdminRegister',
+    component: AdminRegisterComponent,
+    canActivate: [AdminAuthGuard]
   },
   {
     path: 'category/:categoryid', 
