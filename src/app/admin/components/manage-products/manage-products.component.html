@@ -1,9 +1,8 @@
-<!-- <input type="file" (change)="addImage($event)"/> -->
 <div class="container">
     <div [formGroup]="productform" style="margin-top: 30px;">
         <div class="form-group">
             <label for="Productname">Product name</label>
-            <input #inputname formControlName="productname" type="text" class="form-control" id="productname"
+            <input formControlName="productname" type="text" class="form-control" id="productname"
                 placeholder="product name" [class.is-valid]="!productform.controls['productname'].errors"
                 [class.is-invalid]="productform.controls['productname'].errors">
             <div class="text-danger" *ngIf="productform.controls['productname'].errors">
@@ -91,7 +90,7 @@
         <label class="form-label" for="customFile">Select image</label>
         <input formControlName="productimage" type="file" (change)="setEvent($event)" class="form-control"
             id="customFile" /><br>
-        <div>
+        <div style="position:relative; bottom:20px;">
             <small *ngIf="productform.controls['productimage'].hasError('required')" class="form-text text-danger">
                 Please select an image</small>
         </div>
@@ -99,3 +98,56 @@
             class="btn btn-primary">Add Product</button>
     </div>
 </div>
+
+<div class="container">
+    <div [formGroup]="categoryform">
+        <h1 style="text-align: center;">Add Category</h1>
+        <div class="form-group">
+            <label for="categoryname">Category name</label>
+            <input   #inputname formControlName="categoryname" type="text" class="form-control" id="categoryname"
+                placeholder="Category name" [class.is-valid]="!categoryform.controls['categoryname'].errors"
+                [class.is-invalid]="categoryform.controls['categoryname'].errors"><br>
+            <div style="position:relative; bottom:20px;" class="text-danger"
+                *ngIf="categoryform.controls['categoryname'].errors">
+                <small *ngIf="categoryform.controls['categoryname'].hasError('Duplicatedcategory')"
+                    class="form-text text-danger">Category name is duplicated</small>
+            </div>
+            <div style="position:relative; bottom:20px;" class="text-danger"
+                *ngIf="categoryform.controls['categoryname'].errors">
+                <small *ngIf="categoryform.controls['categoryname'].hasError('minlength')"
+                    class="form-text text-danger">Min Length</small>
+            </div>
+            <div style="position:relative; bottom:20px;" class="text-danger"
+                *ngIf="categoryform.controls['categoryname'].errors">
+                <small *ngIf="categoryform.controls['categoryname'].hasError('maxlength')"
+                    class="form-text text-danger">Max Length</small>
+            </div>
+            <div style="position:relative; bottom:20px;" class="text-danger"
+                *ngIf="categoryform.controls['categoryname'].errors">
+                <small *ngIf="categoryform.controls['categoryname'].hasError('required')"
+                    class="form-text text-danger">Required Field</small>
+            </div>
+
+            <div class="form-outline">
+                <label for="description">Description</label>
+                <textarea #inputdesc formControlName="categorydesc" class="form-control" id="description" rows="4"
+                    placeholder="Description" [class.is-valid]="!categoryform.controls['categorydesc'].errors"
+                    [class.is-invalid]="categoryform.controls['categorydesc'].errors"></textarea><br>
+                <div style="position:relative; bottom:20px;" class="text-danger"
+                    *ngIf="categoryform.controls['categorydesc'].errors">
+                    <small *ngIf="categoryform.controls['categorydesc'].hasError('required')"
+                        class="form-text text-danger">Required Field</small>
+                </div>
+                <div style="position:relative; bottom:20px;" class="text-danger"
+                    *ngIf="categoryform.controls['categorydesc'].errors">
+                    <small *ngIf="categoryform.controls['categorydesc'].hasError('minlength')"
+                        class="form-text text-danger">Min Length</small>
+                </div>
+                <div style="position:relative; bottom:20px;" class="text-danger"
+                    *ngIf="categoryform.controls['categorydesc'].errors">
+                    <small *ngIf="categoryform.controls['categorydesc'].hasError('maxlength')"
+                        class="form-text text-danger">Max Length</small>
+                </div>
+
+                <button (click)=" isCategoryNameExists(inputname.value,inputdesc.value)" type="button" [disabled]="categoryform.invalid" class="btn btn-primary">Add Category</button>
+            </div>

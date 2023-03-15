@@ -1,29 +1,26 @@
 <div class="container m-2 p-2">
     <div class="row justify-content-center mb-2">
-      <h1 style="font-family: 'Anton', sans-serif" class="text-center" style="font-size:50px">
+      <h1 style="font-family: 'Anton', sans-serif;font-size: 50px;text-transform: capitalize;" class="text-center" >
          {{category.name}}
       </h1>
     </div>
     <mat-divider class="m-2"></mat-divider>
   
-  <div class="row mt-md-5" >
-      <div class="col-md-3" *ngFor="let product of category.products">
-        <div class="col-sm-6">
-          <img [src]="product.imagePath" *ngIf="product.imagePath" alt="" width="300px" height="400px">
-          <div class="card-body">
-            <h1 class="card-title">{{product.name}}</h1>
-            <mat-divider class="m-2"></mat-divider>
-            <p class="card-text lead">${{product.price}}</p>
-          </div>
-          <div class="card-footer">
-            <div class="row justify-content-center">
-              <button (click)="viewProductDetails(product)" class="btn btn-outline-info" >
-                View details
-              </button>
-              <button class="btn btn-outline-info" (click)="addProductToCart(product)">Add to cart</button >
+  <div class="row md-5">
+    <div class="card mx-auto col-md-3 col-10 mt-5" *ngFor="let product of category.products">
+        <img class='mx-auto img-thumbnail'
+            [src]="product.imagePath"
+            width="300px" height="300px" style="border: 1px solid black;width:300px;height:300px;overflow: hidden;"/>
+        <div class="card-body text-center mx-auto">
+            <div class='cvp' >
+                <h2 class="card-title font-weight-bold">{{product.name}}</h2>
+                <p class="card-text">EGP{{product.price}}</p>
+                <button (click)="viewProductDetails(product)" class="btn details btn-outline-info">View Details</button><br />
+                <button (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()"  class="btn btn-outline-info">ADD TO CART</button>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+  
   </div>
+
+  

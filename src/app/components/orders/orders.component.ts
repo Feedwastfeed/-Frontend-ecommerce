@@ -23,11 +23,10 @@ ngOnInit(): void {
     this.orderservice.getAllOrders().subscribe(
       response =>{
         this.orders=response.data;
-        console.log(response.data);
       });
 }
 getAddress(index : number):String{
   let fullAddress :string=this.orders[index].addressDTO.buildingNum.toString()+" "+this.orders[index].addressDTO.street+" "+this.orders[index].addressDTO.area; 
   return fullAddress;
 }
-}
+}   

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -17,6 +17,7 @@ export class ManageProductsComponent implements OnInit {
   constructor(private http: HttpClient, private formbuilder: FormBuilder, private productservice: ProductService, private categoryservice: CategoryService) { }
 
   productform: FormGroup;
+  categoryform: FormGroup;
   ngOnInit(): void {
 
     this.productform = this.formbuilder.group({
@@ -34,6 +35,12 @@ export class ManageProductsComponent implements OnInit {
         this.categories = response.data;
       })
 
+    this.categoryform = this.formbuilder.group({
+      categoryname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(99)]],
+      categorydesc: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(200)]]
+
+    })
+
   }
 
   event: any;
@@ -46,7 +53,6 @@ export class ManageProductsComponent implements OnInit {
 
   addProduct() {
     var product = new Product();
-
     product.name = this.productform.value.productname;
     product.description = this.productform.value.productdesc;
     product.price = this.productform.value.productprice;
@@ -62,6 +68,7 @@ export class ManageProductsComponent implements OnInit {
     }
     product.imagePath = "assets//images//" + this.event.target.files[0].name;
     this.productservice.add(product);
+    alert("Product added successfully")
 
   }
 
@@ -74,5 +81,30 @@ export class ManageProductsComponent implements OnInit {
       this.productservice.uploadImage(formdata);
     }
   }
+
+  isCategoryNameExists(categoryname: string , descname:string) {
+
+    let i = 0;
+    let  isvalid = true;
+    while (i < this.categories.length) {
+      if (categoryname == this.categories[i].name){
+            isvalid = false ;
+      }
+      i++;
+    }
+    if (isvalid ==false){
+      alert("Error:Category name already exists")
+    }
+    else{
+      let category = new Category();
+      category.name= categoryname;
+      category.description=descname;
+      alert("Category added successfully");
+      this.categoryservice.addCategory(category);
+    }
+  }
+
+
+
 
 }

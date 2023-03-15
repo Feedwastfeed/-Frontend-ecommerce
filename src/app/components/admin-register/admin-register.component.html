@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <div class="logo">
+      <img src="https://www.freepnglogos.com/uploads/wave-png/drawing-waves-png-pictures-13.png" alt="">
+  </div>
+  <div class="text-center mt-4 name">
+      E-Mart
+  </div>
+  <form class="p-3 mt-3" [formGroup]="authRegistrationDto" (submit)="submit()">
+      <div class="form-field d-flex align-items-center">
+          <span class="bi bi-person" style="font-size:x-large;"></span>
+          <input formControlName="userName" type="text" name="userName" id="userName" placeholder="Username"
+          [class.is-valid]="!authRegistrationDto.controls['userName'].errors">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="bi bi-envelope-at" style="font-size:x-large;"></span>
+        <input formControlName="email" type="email" placeholder="E-mail"
+        [class.is-valid]="!authRegistrationDto.controls['email'].errors">
+    </div>
+      <div class="form-field d-flex align-items-center">
+          <span class="bi bi-key-fill" style="font-size:x-large;"></span>
+          <input formControlName="password" name="password" id="pwd" placeholder="Password" [type]="showPass?'password':'text'"
+          [class.is-valid]="!authRegistrationDto.controls['password'].errors">
+          <button mat-icon-button matSuffix (click)="showPass = !showPass" [attr.aria-label]="'Hide Password'" type="button">
+            <mat-icon [class]="showPass ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'" ></mat-icon>
+          </button>
+        </div>
+  
+  <div class="form-field d-flex align-items-center">
+      <span class="bi bi-phone" style="font-size:x-large;"></span>
+      <input formControlName="phone" type="tel"  placeholder="Phone Number"
+      [class.is-valid]="!authRegistrationDto.controls['phone'].errors" maxlength="11">
+  </div>
+  
+  
+      <button class="btn mt-3" type="submit" [disabled]="!authRegistrationDto.valid">Add Admin</button>
+  </form>
+  
+  </div>
+  

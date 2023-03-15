@@ -7,6 +7,7 @@ import { OrderHasProductId } from 'src/app/models/orderhasproductid';
 import { Orders } from 'src/app/models/orders';
 import { Product } from 'src/app/models/product';
 import { ResponseViewModel } from 'src/app/models/responseviewmodel';
+import { AuthService } from '../auth/auth.service';
 import { ProductService } from '../product/product.service';
 
 @Injectable({
@@ -19,9 +20,9 @@ export class CartService {
   public scoreSubject = new Subject<number>();
 
 
-  constructor(private _http: HttpClient, private productService: ProductService) {
-    if (1 > 0) { // check user logged in here
-      this.getcart(26).subscribe(  // 26 is customer id where take it from token
+  constructor(private _http: HttpClient,private authService:AuthService) {
+    if (authService.isLoggedIn() && authService.isCustomer()) {
+      this.getcart(authService.getCustomerData().id).subscribe( 
         response => {
           if (response.data != null) {
             this.orders = response.data;
@@ -42,21 +43,6 @@ export class CartService {
     return res;
   }
 
-  // checkStockToProducts(): number {
-  //   let id = -1;
-  //   this.orders.orderHasProductsDTO.forEach(product => {
-  //     this.productService.getStockById(product.product.id).subscribe(
-  //       response => {
-  //         console.log('out' + response.data + " " + product.amount);
-  //         if (response.data < product.amount) {
-  //           console.log('in');
-  //           id = product.product.id
-  //         }
-  //       });
-  //   });
-  //   console.log(id);
-  //   return id;
-  // }
 
   getOrders(): Orders {
     return this.orders;

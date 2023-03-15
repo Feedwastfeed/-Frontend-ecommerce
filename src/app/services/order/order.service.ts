@@ -16,6 +16,10 @@ export class OrderService {
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/order/orders')
   }
 
+  getCustomerOrder(id :number):Observable<ResponseViewModel>{
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/order/customer/'+id)
+  }
+
   addAddress(address: Address):Observable<ResponseViewModel>{
     return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/order/address', address);
   }

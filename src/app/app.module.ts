@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
@@ -17,6 +17,15 @@ import { MaterialModule } from './shared/material/material.module';
 import { AdminModule } from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth/auth.service';
+import { TokenInterceptorService } from './services/auth/token-interceptor.service';
+import { CartComponent } from './components/cart/cart/cart.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order/customer-order.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
@@ -36,6 +45,11 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     ProductFilterPipe,
     PageNotFoundComponent,
     CartComponent,
+    UserProfileComponent,
+    CustomerOrderComponent,
+    DialogBoxComponent,
+    AdminRegisterComponent
+    CartComponent,
     CartDetailsComponent
   ],
   imports: [
@@ -43,12 +57,18 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AdminModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,8 +17,8 @@
       <div class="td">{{getAddress(currentIndex)}}</div>
       <div class="td">{{order.totalPrice}}</div>
         <div class="td" (click)="expanded[order.id] = !expanded[order.id]">
-            <span *ngIf="expanded[order.id]"><button>hide product</button></span>
-            <span *ngIf="!expanded[order.id]"><button>Show product</button></span>
+            <span *ngIf="expanded[order.id]"><button mat-button style="background-color: lightgrey;">Hide product</button></span>
+            <span *ngIf="!expanded[order.id]"><button mat-button style="background-color: lightgrey;">Show product</button></span>
         </div>
       <div [@detailExpand]="expanded[order.id] ? 'expanded' : 'collapsed'">
         <div class="table-header table-row child-row">
