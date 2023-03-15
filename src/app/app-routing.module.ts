@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -59,6 +60,8 @@ const routes: Routes = [
     component: OrdersComponent,
     canActivate:[UserAuthGuard] 
   },
+  {path: 'profile',component:UserProfileComponent},
+  { path: 'category/:categoryid', component: CategoryDetailsComponent },
   { 
     path: '', 
     redirectTo: 'home', 

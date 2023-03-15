@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { TokenInterceptorService } from './services/auth/token-interceptor.service';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CartComponent } from './components/cart/cart/cart.component';
     ProductDetailsComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CartComponent
+    CartComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
