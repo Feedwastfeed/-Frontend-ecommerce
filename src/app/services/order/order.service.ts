@@ -26,7 +26,8 @@ export class OrderService {
 
 
   updateOrder(order: Orders):Observable<ResponseViewModel>{
-    return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/order/address', order);
+    console.log()
+    return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/order', order);
   }
 
   getAddressForCustomer(id: number):Observable<ResponseViewModel>{

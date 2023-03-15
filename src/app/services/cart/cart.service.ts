@@ -20,9 +20,15 @@ export class CartService {
   public scoreSubject = new Subject<number>();
 
 
-  constructor(private _http: HttpClient,private authService:AuthService) {
-    if (authService.isLoggedIn() && authService.isCustomer()) {
-      this.getcart(authService.getCustomerData().id).subscribe( 
+  constructor(private _http: HttpClient, private authService: AuthService) {
+
+  }
+
+
+  getCartValue() {
+    if (this.authService.isCustomer()) {
+      console.log(this.authService.getCustomerData());
+      this.getcart(this.authService.getCustomerData().id).subscribe(
         response => {
           if (response.data != null) {
             this.orders = response.data;
@@ -33,10 +39,10 @@ export class CartService {
     }
   }
 
-  findNameProductById(id: number): String{
+  findNameProductById(id: number): String {
     let res: String = "";
     this.orders.orderHasProductsDTO.forEach(prod => {
-      if(prod.product.id == id){
+      if (prod.product.id == id) {
         res = prod.product.name;
       }
     });
@@ -53,7 +59,7 @@ export class CartService {
   }
 
   addProductToCart(product: Product) {
-    if (1 > 0) { // check user logged in here
+    if (this.authService.isLoggedIn()) { // check user logged in here
       if (this.orders.id == null) {  // if there is no cart or this first order
         this.addFirstProductToCart(product);
       } else {   // check this product not add to cart
@@ -127,14 +133,18 @@ export class CartService {
 
   addOrder(): Observable<ResponseViewModel> {
     // take customer from toaken
-    let customer = new Customer();
-    customer.id = 2;
-    let order = new Orders(customer, 0, false, new Date());
+
+    let order = new Orders(this.authService.getCustomerData(), 0, false, new Date());
     return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/order', order);
   }
 
   getcart(id: number): Observable<ResponseViewModel> {
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/cart/' + id);
+  }
+
+  updateWallit(): Observable<ResponseViewModel> {
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/customer/walet/' + 
+                                this.authService.getCurrentUserId() + '/' + this.orders.totalPrice);
   }
 
 

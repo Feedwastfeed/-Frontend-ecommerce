@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { Customer } from 'src/app/models/customer';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -31,11 +32,12 @@ export class CartDetailsComponent implements OnInit {
     private orderService: OrderService,
     private productService: ProductService,
     public cartService: CartService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
 
-    ///customer id nedded
+
     this.getAllAddress();
 
     this.submitForm = this.formbuilder.group({
@@ -65,16 +67,26 @@ export class CartDetailsComponent implements OnInit {
     this.productService.checkStock(this.cartService.orders.orderHasProductsDTO).subscribe(
       response => {
         let checkStock = response.data;
-        console.log(response);
         if (checkStock.length == 0) {
-          // check payment ball here 
-          this.productService.updateStock(this.cartService.orders.orderHasProductsDTO).subscribe(response => {
-            this.updateOrderService();
-            this.orderService.updateOrder(this.cartService.orders).subscribe(response => {
-              alert('Order Submit SuccessFully');
-              this.router.navigate(['/cartDetails']);
-            });
-          });
+          if (this.submitForm.value.payment == '0') {
+            this.updateStockAndOrder();
+          } else if (this.submitForm.value.payment == '2') {
+            if (this.authService.getCustomerData().walletLimit >= this.cartService.orders.totalPrice) {
+              this.cartService.updateWallit().subscribe(response => {
+                if (response.data > 0) {
+                  this.updateStockAndOrder();
+                  this.authService.getCustomerData().walletLimit -= this.cartService.orders.totalPrice;
+                } else {
+                  alert('The current wallit is smaller totalPrice');
+                }
+              });
+            } else {
+              alert('The current wallit is smaller totalPrice');
+            }
+          } else {
+            // check payment ball here
+          }
+
 
         } else {
           alert('The current stock of the ' + this.cartService.findNameProductById(checkStock[0]) + ' is insufficient \nTry a smaller amount')
@@ -82,10 +94,21 @@ export class CartDetailsComponent implements OnInit {
       });
   }
 
+  updateStockAndOrder() {
+    this.productService.updateStock(this.cartService.orders.orderHasProductsDTO).subscribe(response => {
+      this.updateOrderService();
+      console.log(this.cartService.orders);
+      this.orderService.updateOrder(this.cartService.orders).subscribe(response => {
+        alert('Order Submit SuccessFully');
+        this.router.navigate(['/home']);
+      });
+    });
+  }
+
   updateOrderService() {
     this.cartService.orders.isSubmitted = true;
     this.cartService.orders.submitDate = new Date();
-    this.cartService.orders.addressDTO =this.submitForm.value.address;
+    this.cartService.orders.addressDTO = this.submitForm.value.address;
     console.log(this.submitForm.value.address);
   }
 
@@ -95,8 +118,7 @@ export class CartDetailsComponent implements OnInit {
     address.buildingNum = +this.addressForm.value.build;
     address.floorNum = +this.addressForm.value.floor;
     address.street = this.addressForm.value.street;
-    address.customer = new Customer();
-    address.customer.id = 26; //////// customer id needed here
+    address.customer = this.authService.getCustomerData();
     console.log(address);
     this.orderService.addAddress(address).subscribe(
       Response => {
@@ -106,7 +128,7 @@ export class CartDetailsComponent implements OnInit {
   }
 
   getAllAddress() {
-    this.orderService.getAddressForCustomer(26).subscribe(
+    this.orderService.getAddressForCustomer(this.authService.getCurrentUserId()).subscribe(
       response => {
         this.addressCustomer = response.data;
       });

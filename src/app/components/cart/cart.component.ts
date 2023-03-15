@@ -48,4 +48,7 @@ export class CartComponent {
     });
     return this.cartService.orders.totalPrice;
   }
+  valid() : boolean{
+    return !(this.cartService.orders.orderHasProductsDTO.length > 0);
+  }
 }
