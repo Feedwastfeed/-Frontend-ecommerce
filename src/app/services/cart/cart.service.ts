@@ -27,13 +27,11 @@ export class CartService {
 
   getCartValue() {
     if (this.authService.isCustomer()) {
-      console.log(this.authService.getCustomerData());
       this.getcart(this.authService.getCustomerData().id).subscribe(
         response => {
           if (response.data != null) {
             this.orders = response.data;
             this.count = this.orders.orderHasProductsDTO.length;
-            console.log(response);
           }
         });
     }

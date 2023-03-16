@@ -39,11 +39,9 @@ export class RegisterComponent {
   }
   submit(){
 
-    console.log(this.authRegistrationDto.value);
      this.authService.register(this.authRegistrationDto.getRawValue())
      .subscribe((res:any)=>{
       if(res.status==false){
-       console.log(res);
        this.authService.openDialog(res.message);
       }else{
        this.authService.openDialog(res.message);
@@ -51,8 +49,7 @@ export class RegisterComponent {
 
       }
      },error =>{
-       alert("Username Already Taken");
-       console.log(error);
+       this.authService.openDialog("Server Side Error!");
      })
   }
  

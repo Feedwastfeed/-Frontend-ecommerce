@@ -26,7 +26,6 @@ export class OrderService {
 
 
   updateOrder(order: Orders):Observable<ResponseViewModel>{
-    console.log()
     return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/order', order);
   }
 
