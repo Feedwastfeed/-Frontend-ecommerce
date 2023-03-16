@@ -84,7 +84,7 @@ export class CartDetailsComponent implements OnInit {
               alert('The current wallit is smaller totalPrice');
             }
           } else {
-            // check payment ball here
+            // check payment ball here come soon
           }
 
 
@@ -97,7 +97,6 @@ export class CartDetailsComponent implements OnInit {
   updateStockAndOrder(paymentType: String) {
     this.productService.updateStock(this.cartService.orders.orderHasProductsDTO).subscribe(response => {
       this.updateOrderService(paymentType);
-      console.log(this.cartService.orders);
       this.orderService.updateOrder(this.cartService.orders).subscribe(response => {
         alert('Order Submit SuccessFully');
         this.router.navigate(['/home']);
@@ -110,7 +109,6 @@ export class CartDetailsComponent implements OnInit {
     this.cartService.orders.submitDate = new Date();
     this.cartService.orders.addressDTO = this.submitForm.value.address;
     this.cartService.orders.paymentType = paymentType;
-    console.log(this.submitForm.value.address);
   }
 
   submitAddress() {
@@ -120,7 +118,6 @@ export class CartDetailsComponent implements OnInit {
     address.floorNum = +this.addressForm.value.floor;
     address.street = this.addressForm.value.street;
     address.customer = this.authService.getCustomerData();
-    console.log(address);
     this.orderService.addAddress(address).subscribe(
       Response => {
         this.getAllAddress()

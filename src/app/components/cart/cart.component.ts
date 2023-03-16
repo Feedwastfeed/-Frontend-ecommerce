@@ -18,7 +18,6 @@ export class CartComponent {
     this.productService.checkStock(this.cartService.orders.orderHasProductsDTO).subscribe(
       response =>{
         let checkStock = response.data;
-        console.log(response);
         if(checkStock.length == 0){
           this.router.navigate(['/cartDetails']);
         }else{

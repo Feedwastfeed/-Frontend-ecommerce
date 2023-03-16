@@ -11,7 +11,7 @@ import { Address } from 'src/app/models/address';
 })
 export class UserProfileComponent implements OnInit{
 
-  profile:Profile;
+  profile = new Profile();
   profileAddress:Address [];
   constructor(private profileService:ProfileService ,private authService:AuthService){}
 

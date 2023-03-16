@@ -44,8 +44,8 @@ body{
         }
         .banner {
             /* The image used */
-            background-image:url(https://thumbs.dreamstime.com/b/flat-line-design-website-banner-e-commerce-modern-vector-illustration-web-marketing-print-material-68581557.jpg);
-            height: 70%;
+            background-image:url(../../../assets/styling/banner-bg.png);
+            height: 80%;
             background-size: cover;
             background-position:right center;
             background-repeat: no-repeat;
