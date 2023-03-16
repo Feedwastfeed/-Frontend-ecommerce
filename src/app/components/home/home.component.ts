@@ -18,6 +18,7 @@ export class HomeComponent implements  OnInit {
 
   products:Product[]=[];
   categories:Category[];
+  sorted:Boolean=true;
 
   constructor(private productservice : ProductService, private categoryservice:CategoryService ,private router: Router , private cartService: CartService,public authService:AuthService) {}
 
@@ -25,6 +26,7 @@ export class HomeComponent implements  OnInit {
     this.productservice.getAllProducts().subscribe(
       response=>{ 
          this.products=response.data;
+
       });
       
   }
@@ -39,4 +41,21 @@ export class HomeComponent implements  OnInit {
     this.cartService.addProductToCart(product);
   }
 
+  sortByTime(){
+    if (this.sorted==true){
+    this.productservice.getAllProductsByTime().subscribe(
+      response=>{
+        this.products=response.data;
+      })
+    this.sorted=false;
+
+  }
+    else{
+      this.productservice.getAllProducts().subscribe(
+        response=>{ 
+           this.products=response.data;
+        })
+        this.sorted=true;  
+    }
+  }
 }

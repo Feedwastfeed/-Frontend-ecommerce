@@ -51,3 +51,8 @@ body{
             background-repeat: no-repeat;
         
           }
+          .help-parent {
+            position: absolute;
+            top:0;
+            left:95vw;
+            }

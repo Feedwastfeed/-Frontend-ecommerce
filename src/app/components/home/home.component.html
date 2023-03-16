@@ -12,6 +12,10 @@
   <div style="width: 325px;">
     <h1 style="padding-top: 50px;text-align: left;margin-left: 10px;font-size: 45px;" ><b> New Arrivals</b>
     </h1>
+    <div class="td" style="margin-left: 70vw ;">
+      <span *ngIf="sorted"><button mat-button style="background-color: lightgrey; width: 50px;" (click)="sortByTime()">Latest Products</button></span>
+      <span *ngIf="!sorted"><button mat-button style="background-color: lightgrey;"(click)="sortByTime()">By Name</button></span>
+  </div>
     <mat-divider class="m-2" style="border: 1px solid rgb(227, 178, 86)"></mat-divider>
   </div>
   
