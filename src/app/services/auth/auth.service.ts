@@ -31,7 +31,7 @@ export class AuthService {
       try {
        return this.http.post<any>(this._registerUrl,data);   
       } catch (error) {
-         console.log(this.errorHandler.handleError(error));
+        this.errorHandler.handleError(error);
          return null;
       }
     }

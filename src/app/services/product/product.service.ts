@@ -15,11 +15,9 @@ export class ProductService {
 
 
   checkStock(productOrder: any): Observable<ResponseViewModel>{
-    console.log(productOrder);
     return this._http.post<ResponseViewModel>('http://localhost:9090/ecommerce/products/stock', productOrder);
   }
   updateStock(productOrder: any): Observable<ResponseViewModel>{
-    console.log(productOrder);
     return this._http.put<ResponseViewModel>('http://localhost:9090/ecommerce/products/stock', productOrder);
   }
 

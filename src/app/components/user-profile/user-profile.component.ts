@@ -19,7 +19,6 @@ export class UserProfileComponent implements OnInit{
     this.profileService.getCustomerById().subscribe(
       response=>{
         this.profile=response.data;
-        console.log(response);
       }
     );
     this.profileService.getCustomerAddressById().subscribe(
