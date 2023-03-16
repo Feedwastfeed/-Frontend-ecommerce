@@ -34,7 +34,7 @@
                   <tbody>
                   <tr >
                     <td>
-                      <<h2 class="card-title font-weight-bold">{{product.name}}</h2>
+                    <h2 class="card-title font-weight-bold">{{product.name}}</h2>
                     <p class="card-text">EGP{{product.price}}</p>
                     <a (click)="viewProductDetails(product)" class="btn details px-auto">View Details</a><br />
                     <a  (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()" class="btn cart px-auto">ADD TO CART</a>
