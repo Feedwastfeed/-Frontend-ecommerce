@@ -23,6 +23,11 @@ export interface Gender {
 export class CartDetailsComponent implements OnInit {
 
   submitForm: FormGroup;
+  floor: String='';
+  build: String='';
+  street: String='';
+  area: String='';
+
   addressForm: FormGroup;
   paymentForm: FormGroup;
   newAddress: boolean = true;
@@ -53,10 +58,10 @@ export class CartDetailsComponent implements OnInit {
       area: ['', [Validators.required]]
     });
     this.paymentForm = this.formbuilder.group({
-      cardName: ['', [Validators.required]],
-      cardCVC: ['', [Validators.required]],
-      cardExpiry: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required]]
+      cardName: ['', [Validators.required,  Validators.min(4)]],
+      cardCVC: ['', [Validators.required,  Validators.min(3),  Validators.max(3)]],
+      cardExpiry: ['', [Validators.required,  Validators.min(5),  Validators.max(5)]],
+      cardNumber: ['', [Validators.required,  Validators.min(16),  Validators.max(16)]]
     });
   }
 
@@ -123,7 +128,11 @@ export class CartDetailsComponent implements OnInit {
     address.customer = this.authService.getCustomerData();
     this.orderService.addAddress(address).subscribe(
       Response => {
-        this.getAllAddress()
+        this.getAllAddress();
+        this.floor = '';
+        this.build = '';
+        this.area = '';
+        this.street = '';
       }
     );
   }

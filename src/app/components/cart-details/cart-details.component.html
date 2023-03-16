@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row d-flex justify-content-center">
         <div [formGroup]="submitForm">
-            <div style="border-radius: 16px; border: 1px solid;" class="mt-5">
-                <legend>Address</legend>
+            <div class="mt-5 card">
+                <legend class="m-2">Address</legend>
                 <div class="d-block my-3 form-check group-gap">
                     <div class="custom-radio" *ngFor="let item of addressCustomer; let i = index">
-                        <input id="i" type="radio" class="form-control-input" name="address" [value]="item"
+                        <input id="i" type="radio" class="form-control-input ml-4 mr-4" name="address" [value]="item"
                             formControlName="address">
                         <label class="form-control-label" for="i">{{viewAddress(item)}} </label>
                     </div>
@@ -14,44 +14,45 @@
                     Address</button>
             </div>
 
-            <fieldset style="border-radius: 16px; border: 1px solid red;" class="mt-2" [hidden]="chooseAddress()">
-                <legend>New Address</legend>
+            <fieldset class="m-2 card" [hidden]="chooseAddress()">
+                <legend class="m-2">New Address</legend>
                 <div [formGroup]="addressForm">
                     <input type="number" id="floor" class="form-control" placeholder="Floor Number" name="floor"
-                        formControlName="floor" class="input-group-sm m-3 ">
+                        formControlName="floor" class="input-group-sm m-3 " [(ngModel)]="floor">
                     <input type="number" id="build" class="form-control" placeholder="Building Number" name="build"
-                        formControlName="build" class="input-group-sm m-3">
+                        formControlName="build" class="input-group-sm m-3" [(ngModel)]="build">
                     <input type="text" id="street" class="form-control" placeholder="Street" name="street"
-                        formControlName="street" class="input-group-sm m-3">
+                        formControlName="street" class="input-group-sm m-3" [(ngModel)]="street">
                     <input type="text" id="area" class="form-control" placeholder="Area" name="area"
-                        formControlName="area" class="input-group-sm m-3">
+                        formControlName="area" class="input-group-sm m-3" [(ngModel)]="area">
                     <button type="button" class="btn btn-danger btn-sm m-3" (click)="submitAddress()"
                         [disabled]="addressForm.invalid">Add Address</button>
                 </div>
             </fieldset>
 
-            <fieldset style="border-radius: 16px; border: 1px solid;" class="mt-5">
-                <legend for="paymentType">Payment Type</legend>
+            <fieldset class="mt-5 card">
+                <legend for="paymentType" class="m-2">Payment Type</legend>
                 <div class="d-block my-3 form-check group-gap">
                     <div class="form-check">
-                        <input type="radio" class="form-control-input" name="payment" value="0" id="cash"
+                        <input type="radio" class="form-control-input m-3" name="payment" value="0" id="cash"
                             formControlName="payment">
                         <label class="form-control-label" for="cash"><i class="bi bi-cash-stack"></i> Cash </label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-control-input" name="payment" value="1" id="card"
+                        <input type="radio" class="form-control-input m-3" name="payment" value="1" id="card"
                             formControlName="payment">
-                        <label class="form-control-label" for="card"> <i class="bi bi-credit-card-2-front"></i>Credit Card </label>
+                        <label class="form-control-label " for="card"> <i class="bi bi-credit-card-2-front"></i>Credit
+                            Card </label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-control-input" name="payment" value="2" id="wallit"
+                        <input type="radio" class="form-control-input m-3" name="payment" value="2" id="wallit"
                             formControlName="payment">
                         <label class="form-control-label" for="wallit"><i class="bi bi-wallet2"></i> Wallet </label>
                     </div>
                 </div>
             </fieldset>
-            <fieldset style="border-radius: 16px; border: 1px solid red;" class="mt-2" [hidden]="chooceCard()">
-                <legend>Credit Card Information</legend>
+            <fieldset class="mt-2 card" [hidden]="chooceCard()">
+                <legend class="m-2">Credit Card Information</legend>
                 <div [formGroup]="paymentForm">
                     <div class="form-group">
                         <label for="cc-number" class="control-label">CARD NUMBER</label>
@@ -65,7 +66,8 @@
                             <div class="form-group">
                                 <label for="cc-exp" class="control-label">CARD EXPIRY</label>
                                 <input id="cc-exp" type="tel" class="input-lg form-control cc-exp input-group-sm"
-                                    formControlName="cardExpiry" name="cardExpiry" placeholder="&bull;&bull; / &bull;&bull;">
+                                    formControlName="cardExpiry" name="cardExpiry"
+                                    placeholder="&bull;&bull; / &bull;&bull;">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -82,9 +84,11 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="mt-4 d-flex justify-content-center">
-                <button type="button" class="btn btn-success btn-lg " (click)="confirmOrder()"
-                    [disabled]="valid()">Submit</button>
+            <div class="card m-2">
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="confirmOrder()"
+                        [disabled]="valid()">Submit</button>
+                </div>
             </div>
         </div>
     </div>
