@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -14,7 +15,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ManageProductsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder, private productservice: ProductService, private categoryservice: CategoryService) { }
+  constructor(private http: HttpClient, private formbuilder: FormBuilder, private productservice: ProductService, private categoryservice: CategoryService , private authservice:AuthService) { }
 
   productform: FormGroup;
   categoryform: FormGroup;
@@ -68,7 +69,9 @@ export class ManageProductsComponent implements OnInit {
     }
     product.imagePath = "assets//images//" + this.event.target.files[0].name;
     this.productservice.add(product);
-    alert("Product added successfully")
+       this.authservice.openDialog("Product added successfully");
+          
+
 
   }
 
@@ -93,13 +96,13 @@ export class ManageProductsComponent implements OnInit {
       i++;
     }
     if (isvalid ==false){
-      alert("Error:Category name already exists")
+      this.authservice.openDialog("Error:Category name already exists");
     }
     else{
       let category = new Category();
       category.name= categoryname;
       category.description=descname;
-      alert("Category added successfully");
+      this.authservice.openDialog("Category added successfully")
       this.categoryservice.addCategory(category);
     }
   }

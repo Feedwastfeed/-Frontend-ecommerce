@@ -10,6 +10,11 @@
     bottom: 0px;
     left: 0;
     right: 0;
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode:color-dodge;
+    background: blur(5px);
+    background-image: url(https://www.freepnglogos.com/uploads/wave-png/wave-logo-png-8.png);
+
   }
   
   .example-sidenav {

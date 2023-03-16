@@ -35,7 +35,6 @@ ngOnInit(): void {
   this.orderService.getCustomerOrder(this.authService.getCurrentUser().id).subscribe(
     response=>{
       this.orders=response.data;
-      console.log(response);
     }
   );
 }

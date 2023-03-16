@@ -38,11 +38,9 @@ export class AdminRegisterComponent {
    }
    submit(){
  
-     console.log(this.authRegistrationDto.value);
       this.authService.adminRegister(this.authRegistrationDto.getRawValue())
       .subscribe((res:any)=>{
        if(res.status==false){
-        console.log(res);
         this.authService.openDialog(res.message);
        }else{
         this.authService.openDialog(res.message);
@@ -50,8 +48,7 @@ export class AdminRegisterComponent {
  
        }
       },error =>{
-        alert("Username Already Taken");
-        console.log(error);
+        this.authService.openDialog("Server Side Error");
       })
    }
   

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenInterceptorService } from 'src/app/services/auth/token-interceptor.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit{
     private router:Router,
     private formBuilder: FormBuilder,
     private alertService:AlertService,
-    
+    private cartService: CartService
     ){}
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
@@ -36,36 +37,35 @@ export class LoginComponent implements OnInit{
  
 
   submit(){ 
-   console.log(this.authCredentialsDto.getRawValue())
     this.authService.login(this.authCredentialsDto.getRawValue())
     .subscribe((res:any)=>{
       if(res.status==true){
-      console.log(res);
       localStorage.setItem('role',res.object.role);
       localStorage.setItem('id',res.object.id)
       localStorage.setItem('email',res.object.email)
       localStorage.setItem('phone',res.object.phone)
       localStorage.setItem('username',res.object.username)
       if(res.object.role=="CUSTOMER"){
-      
+        
         localStorage.setItem('walletLimit',res.object.walletLimit);
         localStorage.setItem('dob',res.object.dob);
         localStorage.setItem('walletLimit',res.object.walletLimit);
-      console.log("currentUserCustomer Created")
       
     } else if(res.object.role=="ADMIN"){
-      console.log("currentUserAdmin Created")
    
     } 
       
       localStorage.setItem('token',res.object.token);
       this.authService.saveData() ;
+      this.cartService.getCartValue();
       this.router.navigate(['/home']);
-    } else{
+    } else if(res.code==411){
       this.authService.openDialog(res.message);
+    } else{
+      this.authService.openDialog('Unkown Error Code');
     }
     },error=>{
-       this.authService.openDialog("Password is incorrect!");
+       this.authService.openDialog("Password is Incorrect!");
       this.alertService.error(error);
     })
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -11,8 +12,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductListComponent implements OnInit{
 
   products:Product[] = [];
-  constructor(private productservice: ProductService, private router: Router) {}
-
+  constructor(private productservice: ProductService, private router: Router,private authService:AuthService) {}
+  
   ngOnInit(): void {
     this.productservice.getAllProducts().subscribe(
       response=>{ 
@@ -33,9 +34,9 @@ export class ProductListComponent implements OnInit{
   }
 
   deleteProduct(product: Product):void{
-    // this.productservice.delete(product.id).subscribe(
-    //   response => {
-    //       alert(response.message);
-    //   });
+    this.productservice.delete(product.id).subscribe(
+      response => {
+          this.authService.openDialog(response.message);
+      });
   }
 }
