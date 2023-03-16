@@ -26,8 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'contact' , 
-    component:ContactComponent,
-    canActivate:[UserAuthGuard]
+    component:ContactComponent
   },
   { 
     path: 'home',
