@@ -16,7 +16,7 @@ import { ProductService } from '../product/product.service';
 export class CartService {
 
   orders = new Orders();
-  private count = 0;
+  public count = 0;
   public scoreSubject = new Subject<number>();
 
 
