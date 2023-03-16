@@ -19,17 +19,35 @@
     <mat-divider class="m-2" style="border: 1px solid rgb(227, 178, 86)"></mat-divider>
   </div>
   
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a product by name">
+  </div>
 <div class="row md-5">
-  <div class="card mx-auto col-md-3 col-10 mt-5" *ngFor="let product of products" style="background: none;">
+  <div class="card mx-auto col-md-3 col-10 mt-5" *ngFor="let product of products | filter:searchText" style="background: none;">
       <img class='mx-auto img-thumbnail'
           [src]="product.imagePath"
           width="300px" height="300px" style="background: none; width:300px;height:300px;overflow: hidden;"/>
       <div class="card-body text-center mx-auto">
           <div class='cvp' >
-              <h2 class="card-title font-weight-bold">{{product.name}}</h2>
-              <p class="card-text">EGP{{product.price}}</p>
-              <a (click)="viewProductDetails(product)" class="btn details px-auto">View Details</a><br />
-              <a  (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()" class="btn cart px-auto">ADD TO CART</a>
+            
+            <div class="container">
+              <div class="row">
+                
+                <table class="table">
+            
+                  <tbody>
+                  <tr >
+                    <td>
+                    <h2 class="card-title font-weight-bold">{{product.name}}</h2>
+                    <p class="card-text">EGP{{product.price}}</p>
+                    <a (click)="viewProductDetails(product)" class="btn details px-auto">View Details</a><br />
+                    <a  (click)="addProductToCart(product)" *ngIf="authService.isLoggedIn() && authService.isCustomer()" class="btn cart px-auto">ADD TO CART</a>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
       </div>
   </div>

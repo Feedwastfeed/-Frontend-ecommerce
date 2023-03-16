@@ -41,6 +41,10 @@ export class HomeComponent implements  OnInit {
     this.cartService.addProductToCart(product);
   }
 
+
+  searchText;
+
+
   sortByTime(){
     if (this.sorted==true){
     this.productservice.getAllProductsByTime().subscribe(
