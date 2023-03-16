@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -11,7 +12,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class CartComponent {
 
-  constructor(public cartService: CartService, private router: Router, private productService: ProductService) { }
+  constructor(public cartService: CartService, private router: Router, private productService: ProductService,private authService:AuthService) { }
 
 
   orderInformation(){
@@ -21,7 +22,7 @@ export class CartComponent {
         if(checkStock.length == 0){
           this.router.navigate(['/cartDetails']);
         }else{
-          alert('The current stock of the '+ this.cartService.findNameProductById(checkStock[0]) +' is insufficient \nTry a smaller amount')          
+         this.authService.openDialog('The current stock of the '+ this.cartService.findNameProductById(checkStock[0]) +' is insufficient \nTry a smaller amount')          
         }
       });
   }

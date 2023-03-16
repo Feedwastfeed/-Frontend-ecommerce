@@ -77,11 +77,11 @@ export class CartDetailsComponent implements OnInit {
                   this.updateStockAndOrder("Wallit");
                   this.authService.getCustomerData().walletLimit -= this.cartService.orders.totalPrice;
                 } else {
-                  alert('The current wallit is smaller totalPrice');
+                 this.authService.openDialog("You don't have enough money in your wallet!");
                 }
               });
             } else {
-              alert('The current wallit is smaller totalPrice');
+              this.authService.openDialog("You don't have enough money in your wallet!");
             }
           } else {
             // check payment ball here come soon
