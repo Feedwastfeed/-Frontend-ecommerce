@@ -69,12 +69,12 @@ export class CartDetailsComponent implements OnInit {
         let checkStock = response.data;
         if (checkStock.length == 0) {
           if (this.submitForm.value.payment == '0') {
-            this.updateStockAndOrder();
+            this.updateStockAndOrder("Cash");
           } else if (this.submitForm.value.payment == '2') {
             if (this.authService.getCustomerData().walletLimit >= this.cartService.orders.totalPrice) {
               this.cartService.updateWallit().subscribe(response => {
                 if (response.data > 0) {
-                  this.updateStockAndOrder();
+                  this.updateStockAndOrder("Wallit");
                   this.authService.getCustomerData().walletLimit -= this.cartService.orders.totalPrice;
                 } else {
                   alert('The current wallit is smaller totalPrice');
@@ -94,9 +94,9 @@ export class CartDetailsComponent implements OnInit {
       });
   }
 
-  updateStockAndOrder() {
+  updateStockAndOrder(paymentType: String) {
     this.productService.updateStock(this.cartService.orders.orderHasProductsDTO).subscribe(response => {
-      this.updateOrderService();
+      this.updateOrderService(paymentType);
       console.log(this.cartService.orders);
       this.orderService.updateOrder(this.cartService.orders).subscribe(response => {
         alert('Order Submit SuccessFully');
@@ -105,10 +105,11 @@ export class CartDetailsComponent implements OnInit {
     });
   }
 
-  updateOrderService() {
+  updateOrderService(paymentType: String) {
     this.cartService.orders.isSubmitted = true;
     this.cartService.orders.submitDate = new Date();
     this.cartService.orders.addressDTO = this.submitForm.value.address;
+    this.cartService.orders.paymentType = paymentType;
     console.log(this.submitForm.value.address);
   }
 
