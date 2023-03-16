@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 
 export class AppComponent implements OnInit {
 
-  cart = 'bi bi-cart-check';
   title = 'ecommerce';
 
   constructor(private cartServices: CartService,public authService:AuthService,private router:Router){
@@ -23,22 +22,28 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.saveData();
     this.cartServices.getCartValue();
+    this.cartServices.countProductCart();
+    this.countCart();
   }
  
  
+  cartLogo(){
+    if (this.cartServices.countProductCart()>0) {
+      return true;
+    }else{
+      return false
+    }
 
- countCart():number{
-  // console.log(this.cartServices.countProductCart());
-  if (this.cartServices.countProductCart()>0) {
-    this.cart='bi bi-cart-check-fill';
   }
+
+ countCart(){
+  // console.log(this.cartServices.countProductCart());
+  
   return this.cartServices.countProductCart();
  }
 
  logout(){
-  console.log(this.authService.isLoggedIn(),this.authService.isCustomer(),this.authService.isAdmin(),this.authService.getCurrentUserId());
   this.authService.userLogout();
-  console.log(this.authService.isLoggedIn());
   
   this.router.navigate(['/login'])
  }

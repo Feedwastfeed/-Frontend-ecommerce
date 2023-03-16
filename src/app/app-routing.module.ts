@@ -19,16 +19,15 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'products/:productid', component: ProductDetailsComponent },
-  { path: 'products', component: ProductListComponent },
-  { path: 'manageproducts', component: ManageProductsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'cartDetails', component: CartDetailsComponent},
-  { path: 'orders', component: OrdersComponent },
+  { 
+    path: 'cartDetails',
+    component: CartDetailsComponent,
+    canActivate:[UserAuthGuard]
+  },
   {
     path: 'contact' , 
-    component:ContactComponent
+    component:ContactComponent,
+    canActivate:[UserAuthGuard]
   },
   { 
     path: 'home',
