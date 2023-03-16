@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { Customer } from 'src/app/models/customer';
+import { Orders } from 'src/app/models/orders';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -99,6 +100,8 @@ export class CartDetailsComponent implements OnInit {
       this.updateOrderService(paymentType);
       this.orderService.updateOrder(this.cartService.orders).subscribe(response => {
         alert('Order Submit SuccessFully');
+        this.cartService.orders = new Orders();
+        this.cartService.count = 0;
         this.router.navigate(['/home']);
       });
     });
