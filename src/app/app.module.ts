@@ -26,6 +26,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CartComponent } from './components/cart/cart.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CartComponent } from './components/cart/cart.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     {

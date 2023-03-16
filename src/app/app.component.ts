@@ -49,4 +49,8 @@ export class AppComponent implements OnInit {
  orderpath(){
   return "customerorders/"+this.authService.getCustomerData().id;
  }
+
+
+
+ 
 }
