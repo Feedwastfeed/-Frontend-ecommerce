@@ -12,12 +12,19 @@
   <div style="width: 325px;">
     <h1 style="padding-top: 50px;text-align: left;margin-left: 10px;font-size: 45px;" ><b> New Arrivals</b>
     </h1>
+    
     <mat-divider class="m-2" style="border: 1px solid rgb(227, 178, 86)"></mat-divider>
   </div>
   
   <div class="search-hero">
+    <div class="td" style="margin-left: 150%; width: 230px;">
+      <b>Sorted By </b>
+      <span *ngIf="sorted"><button mat-button style="background-color: rgba(0, 56, 152,0.3);font-size: medium" (click)="sortByTime()">Name</button></span>
+      <span *ngIf="!sorted"><button mat-button style="background-color: rgba(0, 56, 152,0.3);font-size: medium"(click)="sortByTime()">Latest</button></span>
+  </div>
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a product by name">
   </div>
+  
 <div class="row md-5">
   <div class="card mx-auto col-md-3 col-10 mt-5" *ngFor="let product of products | filter:searchText" style="background: none;">
       <img class='mx-auto img-thumbnail'

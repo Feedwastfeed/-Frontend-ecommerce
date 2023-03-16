@@ -30,7 +30,10 @@ export class ProductService {
 
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products');
   }
+  getAllProductsByTime(): Observable<ResponseViewModel> {
 
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/time');
+  }
   add(product: Product): void {
 
    this._http.post('http://localhost:9090/ecommerce/products', product).subscribe(res=>{

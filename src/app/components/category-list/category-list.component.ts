@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -8,7 +8,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent {
+export class CategoryListComponent implements OnInit {
 
 categories:Category[];
 constructor(private router:Router , private categoryservice:CategoryService){

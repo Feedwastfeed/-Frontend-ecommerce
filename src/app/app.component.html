@@ -29,7 +29,7 @@
         <a mat-button [matMenuTriggerFor]="usermenu" *ngIf="authService.isLoggedIn() && authService.isCustomer()" [innerHTML]="'Welcome, '+authService.getUsername()"></a>
         
         <a mat-button *ngIf="authService.isLoggedIn() && authService.isCustomer()" routerLink="cart" style="text-decoration: none;">
-            <span id="boot-icon" [class]="cart"></span>
+            <span id="boot-icon" [class]="cartLogo() ? 'bi bi-cart-check-fill' : 'bi bi-cart-check'"></span>
             <span class="cart_value" [innerHTML]="countCart()" ></span>
         </a>
         <a mat-button *ngIf="authService.isLoggedIn() && authService.isCustomer()" [matMenuTriggerFor]="wallet">
