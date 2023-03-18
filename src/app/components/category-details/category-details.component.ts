@@ -5,6 +5,7 @@ import { Product } from 'src/app/models/product';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-category-details',
@@ -14,7 +15,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
 export class CategoryDetailsComponent {
 
   category=new Category();
-  constructor(private route: ActivatedRoute, private categoryservice: CategoryService , private router:Router, private cartService: CartService,public authService:AuthService) {
+  constructor(private productService:ProductService,private route: ActivatedRoute, private categoryservice: CategoryService , private router:Router, private cartService: CartService,public authService:AuthService) {
 
     route.paramMap.subscribe((params: ParamMap) => {
 
@@ -24,6 +25,9 @@ export class CategoryDetailsComponent {
           .subscribe(response => {
             
             this.category = response.data;
+            // this.productService.getAllProductByCat(+params.get('categoryid')).subscribe(response=>{
+            //   this.category.products=response.data;
+            // })
     
           })
       }

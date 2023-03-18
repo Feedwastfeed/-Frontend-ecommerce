@@ -25,6 +25,10 @@ export class ProductService {
 
     return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/' + id);
   }
+  getAllProductByCat(id: number): Observable<ResponseViewModel> {
+
+    return this._http.get<ResponseViewModel>('http://localhost:9090/ecommerce/products/products/' + id);
+  }
 
   getAllProducts(): Observable<ResponseViewModel> {
 
